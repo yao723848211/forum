@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <el-button type="success">成功按钮</el-button>
+<!--    <van-button type="danger">警告按钮</van-button>-->
+    <van-icon name="friends-o" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
