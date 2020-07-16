@@ -26,6 +26,7 @@
     import {amendpic, exitlogin, wathcpersonmataion} from "../api/loginApi";
     import Dialog from "vant/lib/dialog";
     import LoginHeader from "./LoginHeader";
+    import {mapState} from "vuex";
 
 
     export default {
@@ -83,7 +84,11 @@
             wathcpersonmataion().then(res => {
                 console.log(res)
                 this.list = res.data
-            })
+            });
+            // this.list=this.islogin1
+        },
+        computed:{
+                ...mapState(['isLogin1'])
         }
     }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <LoginHeader title="登录"></LoginHeader>
         <div  class="login-container">
         <h2>forum</h2>
@@ -20,6 +20,7 @@
 <script>
     import {islogin} from "../api/loginApi";
     import LoginHeader from "./LoginHeader";
+    import {mapState} from "vuex";
 
     export default {
         name: "login",
@@ -27,11 +28,10 @@
         LoginHeader
             },
         data() {
-
-
             return {
                 number: '',
                 password: '',
+
             }
         },
         methods: {
@@ -45,16 +45,30 @@
                 else {
                     islogin(this.number,this.password).then(res=>{
                         console.log(res)
-                        this.$store.commit('changisLogin', {isLogin:true})
-                        this.$router.push('/Personage')
+                        if (res.code==0){
+                            this.$store.commit('changisLogin', {isLogin:true})
+                            this.$store.commit('changeisLogin1',{isLogin1:res.data})
+                            this.$router.push('/Personage')
+
+
+                        }else if(res.code==500){
+                            alert(res.msg)
+                        }
                     })
                 }
 
 
             },
         },
-        created() {
-
+    computed:{
+            ...mapState(['isLogin'])
+    },
+        created(){
+            //eslint-disable-next-line
+            // debugger
+            // if (this.islogin==false){
+            //     this.$router.push('/Personage')
+            // }
         }
     }
 </script>

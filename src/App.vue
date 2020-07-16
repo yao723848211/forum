@@ -9,8 +9,14 @@
     export default {
         name:'app',
         created() {
-            wathcpersonmataion().then(()=>{
-                this.$store.commit('changisLogin', {isLogin:true})
+
+            wathcpersonmataion().then(res=>{
+                if (res.code==0){
+                    this.$store.commit('changisLogin', {isLogin:true})
+                }else{
+                    this.$store.commit('changisLogin', {isLogin:false})
+                }
+
             })
         }
     }

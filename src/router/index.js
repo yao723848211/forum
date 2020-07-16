@@ -75,16 +75,7 @@ const routes = [
         ]
     }
 
-    // {
-    //   path: '/',
-    //   name: 'Home',
-    //   component: Home
-    // },
-    // {
-    //   path: '/about',
-    //   name: 'About',
-    //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-    // }
+
 ]
 
 const router = new VueRouter({
@@ -98,11 +89,13 @@ router.beforeEach((to, from, next) => {
     if (to.meta.isAuth) {
         if (store.state.isLogin == true) {
             next();
-        } else {
-
+        }
+        else {
             next('/')
         }
-    }else{
+    }
+
+    else{
         next()
     }
 })

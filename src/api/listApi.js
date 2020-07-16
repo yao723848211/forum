@@ -1,5 +1,4 @@
 import request from "../utils/http";
-import {formatDate} from "element-ui/src/utils/date-util";
 
 
 //帖子列表

@@ -2,17 +2,29 @@
     <div class="footer-container">
         <div class="home-page"><van-icon name="wap-home" @click="toHomePage"/></div>
         <div class="promulgate-comment"><van-icon name="add" /></div>
-        <router-link to="/login">        <div class="person-info"><van-icon name="manager" /></div></router-link>
+       <div class="person-info"><van-icon name="manager" @click="person" /></div>
     </div>
 </template>
 
 <script>
+    import {mapState} from "vuex";
+
     export default {
         name: "Footer",
         methods:{
             toHomePage(){
                 this.$router.push("/index")
+            },
+            person(){
+                if (this.isLogin==true){
+                    this.$router.push('/Personage')
+                }else {
+                    this.$router.push('/login')
+                }
             }
+        },
+        computed:{
+            ...mapState(['isLogin'])
         }
     }
 </script>
