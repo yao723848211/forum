@@ -12,15 +12,16 @@
         <div class="info">
             <p v-html="obj.intro"></p>
         </div>
-        <div class="comment">
-            <van-icon name="chat-o" />
+        <!--发表评论-->
+        <div class="comment" @click="publicationContent">
+            <van-icon name="chat-o"/>
             <span>评论</span>
         </div>
     </div>
 </template>
 
 <script>
-    import {postListDetail} from "../api/listApi";
+    import {postListDetail, publicationComment} from "../api/listApi";
 
     export default {
         name: "MesageDetail",
@@ -36,6 +37,14 @@
                 this.obj = res.data
                 // console.log(this.obj)
             })
+        },
+        methods: {
+            publicationContent() {
+                console.log(this.$route.params.postsId)
+                publicationComment(775,"eeeeeee").then(res=>{
+                    console.log(res)
+                })
+            }
         }
     }
 </script>
@@ -46,39 +55,47 @@
         padding: 10px 20px;
         box-sizing: border-box;
         overflow: scroll;
-        .personIntro{
+
+        .personIntro {
             display: flex;
             align-items: center;
+
             img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
             }
-            h4{
+
+            h4 {
                 margin-left: 15px;
                 font-size: 20px;
             }
-            p{
+
+            p {
                 margin-left: 15px;
                 font-size: 14px;
                 color: #26a2ff;
             }
         }
-        .perBaner{
+
+        .perBaner {
             display: flex;
             flex-shrink: 1;
+
             img {
                 width: 100%;
                 height: 240px;
             }
         }
-        .info{
-            p{
+
+        .info {
+            p {
                 color: #888;
                 font-size: 14px;
             }
         }
-        .comment{
+
+        .comment {
             width: 80px;
             height: 30px;
             border: 1px solid black;
@@ -87,9 +104,11 @@
             justify-content: space-around;
             float: right;
             overflow: hidden;
-            van-icon{
+
+            van-icon {
                 font-size: 16px;
             }
+
             span {
                 font-size: 16px;
                 /*float: left;*/

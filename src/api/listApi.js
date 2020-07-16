@@ -1,4 +1,5 @@
 import request from "../utils/http";
+import {formatDate} from "element-ui/src/utils/date-util";
 
 
 //帖子列表
@@ -32,11 +33,42 @@ export function postListDetail(postsId) {
 }
 
 //评论列表
-export function commentList(postsId,pageNum=1,pageSize=10) {
+export function commentList(postsId, pageNum = 1, pageSize = 10) {
     const url = `/api/bbs/bbsComment/open/list`;
     const formData = new FormData();
-    formData.append("postsId",postsId)
-    formData.append("pageNum",pageNum)
-    formData.append("pageSize",pageSize)
+    formData.append("postsId", postsId)
+    formData.append("pageNum", pageNum)
+    formData.append("pageSize", pageSize)
+    return request.post(url, formData)
+}
+
+//回复列表
+export function replyComment(parentId) {
+    const url = `/api/bbs/bbsComment/open/reply/list`;
+    const formData = new FormData();
+    formData.append("parentId",parentId)
     return request.post(url,formData)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//publication 发表评论
+export function publicationComment(postsId, commentContent) {
+    const url = `/api/bbs/bbsComment/site/add`;
+    const formData = new FormData();
+    formData.append("postsId", postsId);
+    formData.append("commentContent", commentContent)
+    return request.post(url, formData)
 }
