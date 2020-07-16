@@ -3,20 +3,32 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import {Button} from "element-ui";
+// import {Button} from "element-ui";
+import { Form, FormItem, Input} from "element-ui";
 import { Icon,Search,Col, Row  } from 'vant';
-
+import { Button } from 'vant';
+import store from "./store";
+import { Field ,CellGroup} from 'vant';
 Vue.use(Button);
-
+Vue.use(VueAxios, axios)
 Vue.use(Col);
 Vue.use(Row);
 Vue.use(Search )
 Vue.use(Icon);
 Vue.use(VueAxios, axios)
+Vue.use(Field);
+Vue.use(CellGroup);
 
+
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+import { Dialog } from 'vant';
+Vue.use(Dialog)
 
 Vue.config.productionTip = false
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  store
 }).$mount('#app')

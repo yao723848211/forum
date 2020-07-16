@@ -5,9 +5,12 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        isLogin:false
     },
     mutations: {
-
+        changisLogin(state,payload){
+            state.isLogin=payload.isLogin
+        }
     },
     getters:{
 
@@ -19,3 +22,4 @@ const store = new Vuex.Store({
 
     },
 })
+export default store

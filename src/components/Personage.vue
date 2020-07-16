@@ -1,0 +1,128 @@
+<template>
+    <div>
+        <LoginHeader title="个人信息"></LoginHeader>
+        <img src="../assets/10583098_172043022317_2.jpg" v-if="!list.avatar" class="pic" @click="amend">
+        <input type="file" style="display: none" ref="input1" @change="onImgUpload">
+        <img :src="list.avatar" v-if="list.avatar" class="pic" @click="amend">
+        <h2 style="text-align: center" class="title">
+            {{list.userName}}
+        </h2>
+        <div class="box">
+            <p><span>账号</span>{{list.loginName}}</p>
+            <p><span>手机号</span>{{list.phonenumber}} </p>
+        </div>
+        <div class="box-person">
+            <p>我参与的</p>
+        <router-link to="/ModifiedData">
+            <p>修改资料</p>
+        </router-link>
+            <p @click="exit">退出登录</p>
+        </div>
+    </div>
+</template>
+
+<script>
+
+    import {amendpic, exitlogin, wathcpersonmataion} from "../api/loginApi";
+    import Dialog from "vant/lib/dialog";
+    import LoginHeader from "./LoginHeader";
+
+
+    export default {
+        name: "Personage",
+        components:{
+          LoginHeader
+        },
+        data() {
+            return {
+                list: {}
+            }
+        },
+        methods: {
+            afterRead(file) {
+                // 此时可以自行将文件上传至服务器
+                console.log(file);
+            },
+            exit() {
+                Dialog.confirm({
+                    title: '退出登录',
+                    message: '是否退出登录',
+                })
+                    .then(() => {
+                        exitlogin().then(() => {
+                            // console.log(res)
+                            this.$store.commit('changisLogin', {isLogin:false})
+                            this.$router.push('/login')
+                        })
+                    })
+                    .catch(() => {
+                        // on cancel
+                    });
+
+
+            },
+            amend() {
+                this.$refs.input1.click();
+                // let pic=this.$refs.input1.click('files')
+                // console.log(pic)
+
+            },
+            onImgUpload(e) {
+                amendpic(e.target.files[0]).then(() => {
+                    wathcpersonmataion().then(res => {
+                        console.log(res)
+                        this.list = res.data
+                    })
+                })
+            },
+
+
+        },
+
+        created() {
+            wathcpersonmataion().then(res => {
+                console.log(res)
+                this.list = res.data
+            })
+        }
+    }
+</script>
+
+<style scoped lang="less">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .pic {
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin: 20px auto;
+    }
+
+    .title {
+        margin-bottom: 30px;
+    }
+
+    .box {
+        box-shadow: -6px -1px 8px #7bc1f6;
+        border-radius: 10px;
+
+        p {
+            margin-top: 10px;
+        }
+
+        margin-bottom: 50px;
+    }
+
+    .box-person {
+        p {
+            margin-top: 10px;
+        }
+    }
+    a{
+        color: black;
+    }
+</style>

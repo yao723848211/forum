@@ -2,7 +2,7 @@
     <div class="footer-container">
         <div class="home-page"><van-icon name="wap-home" @click="toHomePage"/></div>
         <div class="promulgate-comment"><van-icon name="add" /></div>
-        <div class="person-info"><van-icon name="manager" /></div>
+        <router-link to="/login">        <div class="person-info"><van-icon name="manager" /></div></router-link>
     </div>
 </template>
 
