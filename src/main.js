@@ -4,12 +4,14 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {Button} from "element-ui";
-// import { Button } from 'vant';
+import { Icon,Search,Col, Row  } from 'vant';
 
 Vue.use(Button);
-import { Icon } from 'vant';
+
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(Search )
 Vue.use(Icon);
-// Vue.use(Button)
 Vue.use(VueAxios, axios)
 
 
