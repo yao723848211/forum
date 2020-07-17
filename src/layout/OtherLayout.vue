@@ -7,16 +7,19 @@
             <router-view></router-view>
         </div>
         <!--        底部-->
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
     import OtherHeader from "../components/OtherHeader";
+    import Footer from "../components/Footer";
 
     export default {
         name: "OtherLayout",
         components: {
-            OtherHeader
+            OtherHeader,
+            Footer
         }
     }
 </script>

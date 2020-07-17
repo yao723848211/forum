@@ -15,23 +15,34 @@
         <!--发表评论-->
         <div class="comment" @click="publicationContent">
             <van-icon name="chat-o"/>
-            <span>评论</span>
+            <span @click.capture="comment">评论</span>
+
+        </div>
+        <div class="discuss" v-if="this.comment1==true">
+            <input type="text" class="content" v-model="content">
+            <button class="btn" @click="btn1" ref="a1">评论</button>
         </div>
     </div>
 </template>
 
 <script>
-    import {postListDetail, publicationComment} from "../api/listApi";
+    import { postListDetail, publicationComment} from "../api/listApi";
+    import Loginminix from "../minix/Loginminix";
+    import {comment} from "../api/loginApi";
+    // import {comment} from "../api/loginApi";
 
     export default {
         name: "MesageDetail",
         data() {
             return {
                 obj: {},
+                comment1:false,
+                content:''
             }
         },
+        mixins:[Loginminix],
         created() {
-            // console.log(this.$route.params.postsId)
+            console.log(this.$route.params.postsId)
             postListDetail(this.$route.params.postsId).then(res => {
                 // console.log(res)
                 this.obj = res.data
@@ -40,16 +51,46 @@
         },
         methods: {
             publicationContent() {
-                console.log(this.$route.params.postsId)
-                publicationComment(775,"eeeeeee").then(res=>{
-                    console.log(res)
+
+                publicationComment(775,"eeeeeee").then(()=>{
+
                 })
+            },
+            comment(){
+                this.comment1=true
+
+
+            },
+            btn1(){
+                console.log(111)
+                // console.log(this.content)
+
+                if (this.loginClick()){
+                    alert('需要登录才能评论')
+                    // this.$router.push('/login')
+                }else {
+                    this.comment1=false
+                    // console.log(this.content)
+                    console.log(this.$route.params.postsId)
+                    console.log(this.content)
+                    // this.$store.commit('changecontent',{content:this.content})
+
+                    comment(this.$route.params.postsId,this.content).then(function () {
+                        alert('评论成功')
+                        this.comment1=true
+                    })
+                }
             }
         }
     }
 </script>
 
 <style scoped lang="less">
+    *{
+        margin:0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     .message-detail-container {
         width: 100%;
         padding: 10px 20px;
@@ -114,6 +155,21 @@
                 /*float: left;*/
             }
 
+        }
+    }
+    .discuss {
+       position: fixed;
+       bottom: 55.5px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        .content {
+            width: 75%;
+            height: 100%;
+        }
+        .btn{
+            width: 25%;
+            height: 100%;
         }
     }
 </style>

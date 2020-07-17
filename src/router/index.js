@@ -12,6 +12,7 @@ import Personage from "../components/Personage";
 import ModifiedData from "../components/ModifiedData";
 import Login from "../components/Login";
 import store from "../store";
+import Search from "../components/Search";
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,7 @@ const routes = [
                 component: Theme
             },
 
+
         ]
     },
     {
@@ -43,6 +45,10 @@ const routes = [
                 path: "/OtherLayout/msgDetail/:postsId",
                 component: MsgDetail
             },
+            {
+                path: '/search',
+                component: Search
+            }
         ]
     },
     {

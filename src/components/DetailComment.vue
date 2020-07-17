@@ -15,9 +15,10 @@
                 <div class="commentContext">
                     <span>{{item.commentContent}}</span>
                 </div>
-                <div class="commentIcon" @click="replyComment(item.commentId)">
+                <div class="commentIcon">
+                    <van-icon name="clear" @click.capture="delete1(item.commentId)" />
                     <i class="el-icon-chat-round"></i>
-                    <span>回复</span>
+                    <span  @click="replyComment(item.commentId)">回复</span>
                 </div>
             </div>
             <van-action-sheet v-model="show" title="回复列表" :overlay=false>
@@ -39,14 +40,21 @@
                 </div>
             </van-action-sheet>
         </div>
+<!--        <div class="discuss">-->
+<!--            <input type="text">-->
+<!--            <button>评论</button>-->
+<!--        </div>-->
     </div>
 </template>
 
 <script>
     import {commentList, replyComment} from "../api/listApi";
+    import {Delete} from "../api/loginApi";
+    import Loginminix from "../minix/Loginminix";
 
     export default {
         name: "DetailComment",
+        mixins:[Loginminix],
         data() {
             return {
                 list: [],
@@ -59,7 +67,8 @@
             // console.log(this.$route.params.postsId)
             commentList(this.$route.params.postsId).then(res => {
                 this.list = res.rows;
-                // console.log(this.list);
+                console.log(this.list);
+                // this.$store.commit('changelist',{list:res.rows})
             })
         },
         methods: {
@@ -70,6 +79,22 @@
                     console.log(res)
                     this.detailList=res.rows
                 })
+            },
+            delete1(ids){
+                if (this.loginClick()){
+                    alert('需要登录才能回复')
+                }else {
+                    console.log(11)
+                    Delete(ids).then(res=>{
+                        console.log(res)
+                        commentList(this.$route.params.postsId).then(res => {
+                            this.list = res.rows;
+                            console.log(this.list);
+                            // this.$store.commit('changelist',{list:res.rows})
+                        })
+                    })
+                }
+
             }
         }
     }
@@ -154,5 +179,10 @@
                 }
             }
         }
+    }
+    .discuss {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 </style>

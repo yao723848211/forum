@@ -64,9 +64,6 @@
             },
             amend() {
                 this.$refs.input1.click();
-                // let pic=this.$refs.input1.click('files')
-                // console.log(pic)
-
             },
             onImgUpload(e) {
                 amendpic(e.target.files[0]).then(() => {

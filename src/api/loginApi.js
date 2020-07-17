@@ -74,3 +74,20 @@ export function uploadingpic(file,fileUseForEnum) {
     return request.post('/api/nos/upload/image',formData)
 
 }
+
+//发表评论
+
+export function comment(postId,commentContent) {
+const formData=new FormData();
+formData.append('postsId',postId);
+formData.append('commentContent',commentContent);
+return request.post('/api/bbs/bbsComment/site/add',formData)
+}
+
+//删除言论
+
+export function Delete(ids) {
+const formData=new FormData();
+formData.append('ids',ids);
+return request.post('/api/bbs/bbsComment/site/remove',formData)
+}
