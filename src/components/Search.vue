@@ -5,10 +5,11 @@
                 v-model="value"
                 placeholder="请输入搜索关键词"
                 input-align="center"
-                @click="search"
+
+               @focus="focus"
         />
 
-        <div class="list" v-for="(item,index) in list" :key="index">
+        <router-link :to="'/OtherLayout/msgDetail/'+item.postsId" class="list" v-for="(item,index) in list" :key="index">
             <div class="person">
                 <img :src="item.avatar" alt="">
                 <span>{{item.userName}}</span>
@@ -20,7 +21,8 @@
             <div class="img">
                 <img :src="item.coverImgUrl" alt="">
             </div>
-        </div>
+        </router-link>
+
     </div>
         </div>
 </template>
@@ -40,13 +42,22 @@
 
         },
         methods:{
-            search(){
+
+            focus(){
                 getPostList(this.value).then(res=>{
                     console.log(res)
                     this.list=res.rows
                 })
-                console.log(this.value)
             }
+        },
+        watch:{
+          value(){
+              getPostList(this.value).then(res=>{
+                  console.log(res)
+                  var details=[];
+                  this.list=   details.concat(res.rows)
+              })
+          }
         }
     }
 </script>
@@ -56,7 +67,8 @@
     display: flex;
     /*flex-direction: column;*/
     justify-content: space-around;
-    background-color: #888888;
+    background-color: white;
+    margin-top: 10px;
     .person{
         width: 25%;
         text-align: center;

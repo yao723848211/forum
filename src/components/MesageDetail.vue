@@ -59,7 +59,10 @@
             comment(){
                 this.comment1=true
 
-
+                if (this.loginClick()){
+                    alert('需要登录才能评论')
+                    // this.$router.push('/login')
+                }
             },
             btn1(){
                 console.log(111)

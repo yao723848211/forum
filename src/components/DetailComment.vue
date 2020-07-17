@@ -16,50 +16,55 @@
                     <span>{{item.commentContent}}</span>
                 </div>
                 <div class="commentIcon">
-                    <van-icon name="clear" @click.capture="delete1(item.commentId)" />
+                    <van-icon name="clear" @click.capture="delete1(item.commentId)"/>
                     <i class="el-icon-chat-round"></i>
-                    <span  @click="replyComment(item.commentId)">回复</span>
+                    <span @click.capture="replyComment(item.commentId)">回复</span>
                 </div>
-            </div>
-            <van-action-sheet v-model="show" title="回复列表" :overlay=false>
-                <div class="content">
-                    <div class="perContent" v-for="(item,index) in detailList" :key="index">
-                        <div class="person">
-                            <img :src="item.avatar" alt="">
-                            <div class="personName">
-                                <span>{{item.userName}}</span>
+                <van-action-sheet v-model="show" title="回复列表" :overlay=false cancel-text="回复" @click.capture="btn1">
+
+                    <div class="content">
+                        <div class="perContent" v-for="(item,index) in detailList" :key="index">
+                            <div class="person">
+                                <img :src="item.avatar" alt="">
+                                <div class="personName">
+                                    <span>{{item.userName}}</span>
+                                </div>
                             </div>
+                            <div class="commentContext">
+                                <span>评论内容:{{item.commentContent}}</span>
+                            </div>
+                            <div>
+                                <span>{{item.updatedTime}}</span>
+                            </div>
+
                         </div>
-                        <div class="commentContext">
-                            <span>评论内容:{{item.commentContent}}</span>
-                        </div>
-                        <div>
-                            <span>{{item.updatedTime}}</span>
-                        </div>
+
                     </div>
-                </div>
-            </van-action-sheet>
+                    <input type="text" class="content1" v-model="content">
+                </van-action-sheet>
+            </div>
         </div>
-<!--        <div class="discuss">-->
-<!--            <input type="text">-->
-<!--            <button>评论</button>-->
-<!--        </div>-->
     </div>
 </template>
 
 <script>
-    import {commentList, replyComment} from "../api/listApi";
+    import {commentList, replyComment, revert} from "../api/listApi";
     import {Delete} from "../api/loginApi";
     import Loginminix from "../minix/Loginminix";
+    import Dialog from "vant/lib/dialog";
 
     export default {
         name: "DetailComment",
-        mixins:[Loginminix],
+        mixins: [Loginminix],
         data() {
             return {
                 list: [],
                 show: false,
-                detailList:[],
+                detailList: [],
+                revert1: false,
+                content: '',
+                id: ''
+
             }
 
         },
@@ -73,28 +78,47 @@
         },
         methods: {
             replyComment(parentId) {
+
+                this.revert1 = true;
                 this.show = !this.show;
                 console.log(parentId)
                 replyComment(parentId).then(res => {
                     console.log(res)
-                    this.detailList=res.rows
+                    this.detailList = res.rows
                 })
+                this.id = parentId
             },
-            delete1(ids){
-                if (this.loginClick()){
-                    alert('需要登录才能回复')
-                }else {
-                    console.log(11)
-                    Delete(ids).then(res=>{
-                        console.log(res)
-                        commentList(this.$route.params.postsId).then(res => {
-                            this.list = res.rows;
-                            console.log(this.list);
-                            // this.$store.commit('changelist',{list:res.rows})
-                        })
-                    })
+            delete1(ids) {
+                if (this.loginClick()) {
+                    alert('需要登录才能删除')
+                } else {
+                    Dialog.confirm({
+                        title: '删除',
+                        message: '是否删除',
+                    }).then(() => {
+                            Delete(ids).then(() => {
+                                commentList(this.$route.params.postsId).then(res => {
+                                    this.list = res.rows;
+                                })
+                            })
+                        }).catch(() => {
+                        });
                 }
+            },
+            btn1() {
+                if (this.loginClick()) {
+                    alert('需要登录才能回复')
+                } else {
+                    this.revert1 = false;
+                    console.log(this.id)
+                    revert(this.$route.params.postsId, this.id, this.content).then(res => {
+                        this.content = ''
+                       if (res.code==0){
+                           alert('回复成功')
+                       }
+                    })
 
+                }
             }
         }
     }
@@ -104,15 +128,18 @@
     * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
     }
 
     .detailComment {
         border-top: 1px dashed black;
         padding: 15px 10px;
-        .van-action-sheet__content{
+
+        .van-action-sheet__content {
             height: 240px;
             overflow: scroll;
         }
+
         .allComment {
             width: 100%;
             height: 100px;
@@ -154,14 +181,16 @@
         }
 
 
-        .perContent{
+        .perContent {
             overflow: scroll;
             background-color: burlywood;
             padding: 10px 30px;
             box-sizing: border-box;
             margin-top: 15px;
+
             .person {
                 display: flex;
+
                 img {
                     width: 40px;
                     height: 40px;
@@ -180,9 +209,31 @@
             }
         }
     }
+
     .discuss {
         position: fixed;
-        bottom: 0;
+        bottom: 0px;
+        left: 0;
         width: 100%;
+        height: 40px;
+
+        .btn {
+            width: 25%;
+            height: 100%;
+        }
+    }
+
+    /deep/ .van-action-sheet__cancel {
+        width: 15%;
+        background: red;
+        height: 36px;
+        margin-left: 85%;
+    }
+
+    .content1 {
+        position: fixed;
+        bottom: 0;
+        width: 85%;
+        height: 36px;
     }
 </style>

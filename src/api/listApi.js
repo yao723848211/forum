@@ -50,6 +50,15 @@ export function replyComment(parentId) {
 
 }
 
+//回复言论
+export function revert(postsId,parentId,commentContent) {
+    const formData=new FormData();
+    formData.append('postsId',postsId);
+    formData.append('parentId',parentId);
+    formData.append('commentContent',commentContent);
+    return request.post('/api/bbs/bbsComment/site/reply/add',formData)
+}
+
 
 
 

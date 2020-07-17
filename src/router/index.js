@@ -47,7 +47,10 @@ const routes = [
             },
             {
                 path: '/search',
-                component: Search
+                component: Search,
+                children:[{
+                    path:"/OtherLayout/msgDetail/:postsId",component: MsgDetail
+                }]
             }
         ]
     },
