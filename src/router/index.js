@@ -43,14 +43,15 @@ const routes = [
         component: OtherLayout,
         children: [
             {
-                path: "/OtherLayout/msgDetail/:postsId",
+                path: "/OtherLayout/msgDetail/:postsId/:title",
                 component: MsgDetail
             },
             {
                 path: '/search',
                 component: Search,
                 children:[{
-                    path:"/OtherLayout/msgDetail/:postsId",component: MsgDetail
+                    path:"/OtherLayout/msgDetail/:postsId/:title",
+                    component: MsgDetail
                 }]
             }
         ]

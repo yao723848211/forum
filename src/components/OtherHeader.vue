@@ -11,17 +11,18 @@
 
             <van-cell is-link @click="showPopup">    <van-icon name="ellipsis" /></van-cell>
             <van-popup v-model="show"  position="bottom" :style="{ height: '100px',width:'100%' }" >
-
                     <button @click="delete1">删除帖子</button>
-                    <button>修改帖子</button>
-
+                    <button @click="emend">修改帖子</button>
             </van-popup>
         </div>
     </div>
 </template>
 
 <script>
-    import {deletepost} from "../api/loginApi";
+    import { deletepost} from "../api/loginApi";
+    import Dialog from "vant/lib/dialog";
+    import {emendpost} from "../api/listApi";
+    // import {commentList} from "../api/listApi";
 
     export default {
         name: "OtherHeader",
@@ -29,6 +30,9 @@
             return {
                 show: false,
             };
+        },
+        created() {
+
         },
         methods:{
             goBack(){
@@ -38,7 +42,33 @@
                 this.show = true;
             },
             delete1(){
-                deletepost(this.$route.params.)
+                Dialog.confirm({
+                    title: '删除',
+                    message: '是否删除',
+                }).then(() => {
+                    deletepost(this.$route.params.postsId).then(()=>{
+                      this.$router.push('/index')
+
+                    })
+                }).catch(() => {
+                });
+
+            },
+            emend(){
+                    Dialog.confirm({
+                        title: '修改',
+                        message: '是否确认修改',
+                    }).then(() => {
+                        emendpost(this.$route.params.postsId,this.$route.params.title).then(()=>{
+                            this.$router.push('/index')
+
+                        })
+                    }).catch(() => {
+                    });
+
+                    // this.$store.dispatch('details').then(res=>{
+                    //     this.$store.commit('changdetail',res.data)
+                    // })
             }
         }
     }

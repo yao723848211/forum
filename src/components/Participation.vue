@@ -1,7 +1,7 @@
 <template>
     <div>
 
-            <router-link :to="'/OtherLayout/msgDetail/'+item.postsId" tag="div"  class="participation-content" v-for="(item,index) in list" :key="index">
+            <router-link :to="'/OtherLayout/msgDetail/'+item.postsId+'/'+item.title" tag="div"  class="participation-content" v-for="(item,index) in list" :key="index">
                 <div>
                     <h3>{{item.title}}</h3>
                     <img :src="item.coverImgUrl" alt="">

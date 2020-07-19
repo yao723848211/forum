@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {postListDetail} from "../api/listApi";
 
 Vue.use(Vuex)
 
@@ -8,7 +9,9 @@ const store = new Vuex.Store({
         isLogin:false,
         isLogin1:{},
         content:'',
-        list:[]
+        list:[],
+        detail: {},
+        detailId:''
     },
     mutations: {
         changisLogin(state,payload){
@@ -22,13 +25,26 @@ const store = new Vuex.Store({
         },
         changelist(state,payload){
             state.list=payload.list
+        },
+        changdetail(state,payload){
+            state.detail=payload.detail
+        },
+        changeid(state,payload){
+            state.detailId=payload.detailId
         }
     },
     getters:{
 
     },
     actions:{
-
+        details(context){
+          return postListDetail(this.state.detailId).then(res => {
+                console.log(res)
+                // this.detail = res.data
+              context.commit('changdetail',{detail:res.data})
+                // console.log(this.obj)
+            })
+        }
     },
     modules:{
 
