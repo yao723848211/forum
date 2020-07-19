@@ -8,17 +8,37 @@
             帖子详情
         </div>
         <div>
-            <van-icon name="ellipsis" />
+
+            <van-cell is-link @click="showPopup">    <van-icon name="ellipsis" /></van-cell>
+            <van-popup v-model="show"  position="bottom" :style="{ height: '100px',width:'100%' }" >
+
+                    <button @click="delete1">删除帖子</button>
+                    <button>修改帖子</button>
+
+            </van-popup>
         </div>
     </div>
 </template>
 
 <script>
+    import {deletepost} from "../api/loginApi";
+
     export default {
         name: "OtherHeader",
+        data(){
+            return {
+                show: false,
+            };
+        },
         methods:{
             goBack(){
                 this.$router.back();
+            },
+            showPopup() {
+                this.show = true;
+            },
+            delete1(){
+                deletepost(this.$route.params.)
             }
         }
     }
@@ -36,5 +56,9 @@
             display: flex;
             align-items: center;
         }
+    }
+    button{
+        display: block;
+        width: 100%;
     }
 </style>

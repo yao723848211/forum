@@ -13,6 +13,7 @@ import ModifiedData from "../components/ModifiedData";
 import Login from "../components/Login";
 import store from "../store";
 import Search from "../components/Search";
+import Participation from "../components/Participation";
 
 Vue.use(VueRouter)
 
@@ -79,7 +80,12 @@ const routes = [
             }, {
                 path: '/ModifiedData',
                 component: ModifiedData
-            }
+            },
+            {
+                path: '/Participation',
+                component: Participation
+            },
+
 
         ]
     }
