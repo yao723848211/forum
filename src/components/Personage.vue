@@ -1,6 +1,5 @@
 <template>
     <div>
-        <LoginHeader title="个人信息"></LoginHeader>
         <img src="../assets/10583098_172043022317_2.jpg" v-if="!list.avatar" class="pic" @click="amend">
         <input type="file" style="display: none" ref="input1" @change="onImgUpload">
         <img :src="list.avatar" v-if="list.avatar" class="pic" @click="amend">
@@ -25,20 +24,21 @@
 
     import {amendpic, exitlogin, wathcpersonmataion} from "../api/loginApi";
     import Dialog from "vant/lib/dialog";
-    import LoginHeader from "./LoginHeader";
     import {mapState} from "vuex";
+    import Loginminix from "../minix/Loginminix";
 
 
     export default {
         name: "Personage",
         components:{
-          LoginHeader
+
         },
         data() {
             return {
                 list: {}
             }
         },
+        mixins:[Loginminix],
         methods: {
             afterRead(file) {
                 // 此时可以自行将文件上传至服务器
@@ -52,8 +52,9 @@
                     .then(() => {
                         exitlogin().then(() => {
                             // console.log(res)
-                            this.$store.commit('changisLogin', {isLogin:false})
                             this.$router.push('/login')
+                            this.$store.commit('changisLogin', {isLogin:false})
+
                         })
                     })
                     .catch(() => {

@@ -196,7 +196,6 @@
                     height: 40px;
                     border-radius: 50%;
                 }
-
                 .personName {
                     margin-left: 15px;
                     display: flex;

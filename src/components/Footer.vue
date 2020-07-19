@@ -1,7 +1,10 @@
 <template>
     <div class="footer-container">
         <div class="home-page"><van-icon name="wap-home" @click="toHomePage"/></div>
-        <div class="promulgate-comment"><van-icon name="add" /></div>
+        <div class="promulgate-comment" @click="publishPost"><van-icon name="add" /></div>
+<!--        <div class="person-info"><van-icon name="manager" /></div>-->
+<!--        <div class="promulgate-comment"><van-icon name="add" /></div>-->
+        <router-link to="/news"> <div style="margin-top: 10px"><van-icon name="new-o" /></div></router-link>
        <div class="person-info"><van-icon name="manager" @click="person" /></div>
     </div>
 </template>
@@ -14,6 +17,9 @@
         methods:{
             toHomePage(){
                 this.$router.push("/index")
+            },
+            publishPost(){
+                this.$router.push("/publish")
             },
             person(){
                 if (this.isLogin==true){
@@ -45,6 +51,9 @@
         font-size:40px;
         line-height: 50px;
         color: crimson;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 }
 </style>

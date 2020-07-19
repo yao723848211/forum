@@ -1,6 +1,5 @@
 <template>
     <div>
-        <LoginHeader title="修改密码"></LoginHeader>
         <van-field v-model="number" type="text" label="用户名" />
         <!-- 输入密码 -->
 
@@ -14,13 +13,9 @@
 <script>
     import {amendmataion} from "../api/loginApi";
     import Dialog from "vant/lib/dialog";
-    import LoginHeader from "./LoginHeader";
-
+    import Loginminix from "../minix/Loginminix";
     export default {
         name: "ModifiedData",
-        components:{
-            LoginHeader
-        },
         data() {
 
 
@@ -30,6 +25,7 @@
                 phone:""
             }
         },
+        mixins:[Loginminix],
         methods:{
             amend(){
                 amendmataion(this.number,this.phone).then(res=>{

@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import headerTitle from "./moudels/headerTitle";
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+
         isLogin:false,
         isLogin1:{},
         content:'',
@@ -31,7 +32,7 @@ const store = new Vuex.Store({
 
     },
     modules:{
-
+        headerTitle:headerTitle
     },
 })
 export default store

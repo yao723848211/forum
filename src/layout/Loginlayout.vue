@@ -1,27 +1,23 @@
 <template>
     <div>
-
+        <!--登录界面的组件-->
+        <OtherHeader></OtherHeader>
         <router-view></router-view>
         <Footer></Footer>
     </div>
 </template>
 
 <script>
-    // import LoginHeader from "../components/LoginHeader";
 
     import Footer from "../components/Footer";
+    import OtherHeader from "../components/OtherHeader";
 
     export default {
         name: "Loginlayout",
-        components:{
-          Footer
+        components: {
+            Footer,
+            OtherHeader
         },
-
-        data(){
-            return{
-                // list:['登录','注册','忘记密码']
-            }
-        }
     }
 </script>
 

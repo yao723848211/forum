@@ -1,8 +1,6 @@
 <template>
     <div >
-        <LoginHeader title="注册"></LoginHeader>
         <div class="sign-container">
-
         <van-cell-group>
             <van-field
                     v-model="username"
@@ -33,6 +31,7 @@
                     label="手机号"
                     placeholder="请输入手机号"
 
+
             />
             <van-field
                     v-model="sms"
@@ -58,13 +57,14 @@
 
 <script>
     import {code, signin} from "../api/loginApi";
-    import LoginHeader from "./LoginHeader";
+    import Loginminix from "../minix/Loginminix";
 
     export default {
         name: "Sign",
         components:{
-            LoginHeader
+
         },
+        mixins:[Loginminix],
         data() {
             return {
                 username:'',

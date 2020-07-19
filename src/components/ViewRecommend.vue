@@ -32,12 +32,13 @@
             }
         },
         created() {
-            getPostList().then(res => {
+            getPostList(this.$route.params.categoryId).then(res => {
                 // console.log(res)
                 this.list = res.rows
             })
         },
         methods:{
+            //点击进入该论坛的详情界面
             toMsgDetail(postsId){
                 this.$router.push("/OtherLayout/msgDetail/" +postsId)
             }

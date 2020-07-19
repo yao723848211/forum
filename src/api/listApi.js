@@ -2,9 +2,10 @@ import request from "../utils/http";
 
 
 //帖子列表
-export function getPostList(title='', postsId = '') {
+export function getPostList( categoryId = '',title = '', postsId = '',) {
     const url = `/api/bbs/bbsPosts/open/list`
     const formData = new FormData();
+    formData.append("categoryId", categoryId)
     formData.append("postsId", postsId)
     formData.append("title", title)
     return request.post(url, formData).then(res => {
@@ -45,9 +46,8 @@ export function commentList(postsId, pageNum = 1, pageSize = 20) {
 export function replyComment(parentId) {
     const url = `/api/bbs/bbsComment/open/reply/list`;
     const formData = new FormData();
-    formData.append("parentId",parentId)
-    return request.post(url,formData)
-
+    formData.append("parentId", parentId)
+    return request.post(url, formData)
 }
 
 //回复言论
@@ -60,18 +60,6 @@ export function revert(postsId,parentId,commentContent) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //publication 发表评论
 export function publicationComment(postsId, commentContent) {
     const url = `/api/bbs/bbsComment/site/add`;
@@ -79,4 +67,17 @@ export function publicationComment(postsId, commentContent) {
     formData.append("postsId", postsId);
     formData.append("commentContent", commentContent)
     return request.post(url, formData)
+}
+
+//创建帖子
+
+export function createPost(categoryId, title, intro, coverImgUrl) {
+    const url = `/api/bbs/bbsPosts/site/add`;
+    const formData = new FormData();
+    formData.append("categoryId", categoryId);
+    formData.append("title", title);
+    formData.append("intro", intro);
+    formData.append("coverImgUrl", coverImgUrl);
+    return request.post(url, formData)
+
 }

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <LoginHeader title="忘记密码"></LoginHeader>
         <van-cell-group>
             <van-field
                     v-model="username"
@@ -46,58 +45,57 @@
 
 <script>
     import {code, forgetpassword} from "../api/loginApi";
-    import LoginHeader from "./LoginHeader";
+    import Loginminix from "../minix/Loginminix";
+
 
     export default {
         name: "ForgetPassword",
-        components:{
-          LoginHeader
-        },
+        mixins:[Loginminix],
         data() {
             return {
-                username:'',
-                phone:'',
-                password:'',
-                sms:'',
+                username: '',
+                phone: '',
+                password: '',
+                sms: '',
 
                 // timer:null,
-                code1:"发送验证码",
-                disabled:null
+                code1: "发送验证码",
+                disabled: null
             };
         },
         methods: {
             code() {
-         if(this.phone==''){
-             alert('输入手机号')
-         }else {
-             this.disabled = true;
-             var time = 60;
-             this.code1 = time;
-             let timer = setInterval(() => {
-                 this.code1--;
-                 if (this.code1 == 0) {
-                     clearInterval(timer);
+                if (this.phone == '') {
+                    alert('输入手机号')
+                } else {
+                    this.disabled = true;
+                    var time = 60;
+                    this.code1 = time;
+                    let timer = setInterval(() => {
+                        this.code1--;
+                        if (this.code1 == 0) {
+                            clearInterval(timer);
 
-                     this.code1 = '发送验证码'
-                     this.disabled = false
-                 }
-             }, 1000);
+                            this.code1 = '发送验证码'
+                            this.disabled = false
+                        }
+                    }, 1000);
 
 
-             code(this.phone).then(res => {
-                 console.log(res)
-             })
-         }
+                    code(this.phone).then(res => {
+                        console.log(res)
+                    })
+                }
 
             },
-            forget(){
-                forgetpassword(this.username,this.password,this.phone,this.sms).then(res=>{
+            forget() {
+                forgetpassword(this.username, this.password, this.phone, this.sms).then(res => {
                     console.log(res)
-                if (res.code==0){
-                    this.$router.push('/login')
-                }else{
-                    alert(res.msg)
-                }
+                    if (res.code == 0) {
+                        this.$router.push('/login')
+                    } else {
+                        alert(res.msg)
+                    }
                 })
             }
         }
@@ -106,9 +104,9 @@
 </script>
 
 <style scoped lang="less">
-.btn {
-    width: 100%;
-    margin-top: 20px;
-    height: 40px;
-}
+    .btn {
+        width: 100%;
+        margin-top: 20px;
+        height: 40px;
+    }
 </style>

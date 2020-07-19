@@ -5,7 +5,11 @@ import Index from "../views/Index";
 import Theme from "../views/Theme";
 import MsgDetail from "../views/MsgDetail";
 import OtherLayout from "../layout/OtherLayout";
-import Loginlayout from "../layout/Loginlayout";
+import MakeFriends from "../components/MakeFriends";
+import PublishComment from "../components/PublishComment";
+import ViewRecommend from "../components/ViewRecommend";
+
+
 import Sign from "../components/Sign";
 import ForgetPassword from "../components/ForgetPassword";
 import Personage from "../components/Personage";
@@ -13,6 +17,9 @@ import ModifiedData from "../components/ModifiedData";
 import Login from "../components/Login";
 import store from "../store";
 import Search from "../components/Search";
+import Loginlayout from "../layout/Loginlayout";
+import News from "../components/News";
+import NewsDetails from "../components/NewsDetails";
 
 Vue.use(VueRouter)
 
@@ -43,14 +50,46 @@ const routes = [
         children: [
             {
                 path: "/OtherLayout/msgDetail/:postsId",
-                component: MsgDetail
+                component: MsgDetail,
+                meta: {
+                    title: "帖子详情"
+                }
+            },
+            {
+                path: "/theme/friend/:categoryId",
+                component: MakeFriends,
+                children: [{
+                    path: "",
+                    component: ViewRecommend,
+                }]
+            },
+            {
+                path: "/publish",
+                component: PublishComment,
+                meta: {
+                    title: "发布帖子"
+                }
             },
             {
                 path: '/search',
                 component: Search,
-                children:[{
-                    path:"/OtherLayout/msgDetail/:postsId",component: MsgDetail
+                children: [{
+                    path: "/OtherLayout/msgDetail/:postsId", component: MsgDetail
                 }]
+            },
+            {
+                path: "/news",
+                component:News,
+                meta: {
+                    title: "新闻列表"
+                }
+            },
+            {
+                path: "/news/detail/:articleId",
+                component: NewsDetails,
+                meta: {
+                    title: "新闻详情"
+                }
             }
         ]
     },
@@ -59,26 +98,40 @@ const routes = [
         component: Loginlayout,
         children: [{
             path: '/login',
-            component: Login
+            component: Login,
+            meta: {
+                title: "登录"
+            },
         },
 
             {
                 path: '/Sign',
-                component: Sign
+                component: Sign,
+                meta: {
+                    title: "注册"
+                }
             },
             {
                 path: '/ForgetPassword',
-                component: ForgetPassword
-            }, {
+                component: ForgetPassword,
+                meta: {
+                    title: "忘记密码",
+                }
+            },
+            {
                 path: '/Personage',
                 component: Personage,
                 meta: {
-                    isAuth: true
+                    isAuth: true,
+                    title: "个人信息"
                 }
 
             }, {
                 path: '/ModifiedData',
-                component: ModifiedData
+                component: ModifiedData,
+                meta: {
+                    title: "修改资料"
+                }
             }
 
         ]
@@ -98,13 +151,10 @@ router.beforeEach((to, from, next) => {
     if (to.meta.isAuth) {
         if (store.state.isLogin == true) {
             next();
-        }
-        else {
+        } else {
             next('/')
         }
-    }
-
-    else{
+    } else {
         next()
     }
 })

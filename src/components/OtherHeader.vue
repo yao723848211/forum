@@ -5,19 +5,32 @@
             返回
         </div>
         <div>
-            帖子详情
+            {{title}}
         </div>
         <div>
-            <van-icon name="ellipsis" />
+            <van-icon name="ellipsis"/>
         </div>
     </div>
 </template>
 
 <script>
+    // import {mapState} from "vuex";
+
     export default {
         name: "OtherHeader",
-        methods:{
-            goBack(){
+        // data() {
+        //     return {
+        //         title: this.$route.meta.title
+        //     }
+        // },
+        computed: {
+            // ...mapState(["title"])
+            title(){
+                return this.$store.state.headerTitle.title
+            }
+        },
+        methods: {
+            goBack() {
                 this.$router.back();
             }
         }
@@ -32,7 +45,8 @@
         display: flex;
         justify-content: space-between;
         font-size: 20px;
-        .goBack{
+
+        .goBack {
             display: flex;
             align-items: center;
         }
