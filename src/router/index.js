@@ -20,6 +20,7 @@ import Search from "../components/Search";
 import Loginlayout from "../layout/Loginlayout";
 import News from "../components/News";
 import NewsDetails from "../components/NewsDetails";
+import Participation from "../components/Participation";
 
 Vue.use(VueRouter)
 
@@ -61,7 +62,7 @@ const routes = [
                 children: [{
                     path: "",
                     component: ViewRecommend,
-                }]
+                }],
             },
             {
                 path: "/publish",
@@ -69,76 +70,91 @@ const routes = [
                 meta: {
                     title: "发布帖子"
                 }
+            }, {
+                path: "/OtherLayout/msgDetail/:postsId/:title",
+                component: MsgDetail,
             },
             {
                 path: '/search',
                 component: Search,
                 children: [{
-                    path: "/OtherLayout/msgDetail/:postsId", component: MsgDetail
-                }]
+                    path: "/OtherLayout/msgDetail/:postsId",
+                    component: MsgDetail,
+                    children: [{
+                        path: "/OtherLayout/msgDetail/:postsId/:title",
+                        component: MsgDetail
+                    }]
+                },
+                    {
+                        path: "/news",
+                        component: News,
+                        meta: {
+                            title: "新闻列表"
+                        }
+                    },
+                    {
+                        path: "/news/detail/:articleId",
+                        component: NewsDetails,
+                        meta: {
+                            title: "新闻详情"
+                        }
+                    }
+                ]
             },
             {
-                path: "/news",
-                component:News,
-                meta: {
-                    title: "新闻列表"
-                }
-            },
-            {
-                path: "/news/detail/:articleId",
-                component: NewsDetails,
-                meta: {
-                    title: "新闻详情"
-                }
+                path: '/login',
+                component: Loginlayout,
+                children: [
+                    {
+                        path: '/login',
+                        component: Login,
+                        meta: {
+                            title: "登录"
+                        }
+                    },
+
+                    {
+                        path: '/Sign',
+                        component: Sign,
+                        meta: {
+                            title: "注册"
+                        }
+                    },
+                    {
+                        path: '/ForgetPassword',
+                        component: ForgetPassword,
+                        meta: {
+                            title: "忘记密码",
+                        }
+                    },
+                    {
+                        path: '/Personage',
+                        component: Personage,
+                        meta: {
+                            isAuth: true,
+                            title: "个人信息"
+                        }
+
+                    }, {
+                        path: '/ModifiedData',
+                        component: ModifiedData,
+                        meta: {
+                            title: "修改资料"
+                        }
+                    },
+
+                    {
+                        path: '/Participation',
+                        component: Participation
+                    },
+
+
+                ]
             }
-        ]
-    },
-    {
-        path: '/login',
-        component: Loginlayout,
-        children: [{
-            path: '/login',
-            component: Login,
-            meta: {
-                title: "登录"
-            },
-        },
-
-            {
-                path: '/Sign',
-                component: Sign,
-                meta: {
-                    title: "注册"
-                }
-            },
-            {
-                path: '/ForgetPassword',
-                component: ForgetPassword,
-                meta: {
-                    title: "忘记密码",
-                }
-            },
-            {
-                path: '/Personage',
-                component: Personage,
-                meta: {
-                    isAuth: true,
-                    title: "个人信息"
-                }
-
-            }, {
-                path: '/ModifiedData',
-                component: ModifiedData,
-                meta: {
-                    title: "修改资料"
-                }
-            }
-
-        ]
     }
 
-
 ]
+
 
 const router = new VueRouter({
     mode: 'history',

@@ -9,7 +9,7 @@
                @focus="focus"
         />
 
-        <router-link :to="'/OtherLayout/msgDetail/'+item.postsId" class="list" v-for="(item,index) in list" :key="index">
+        <router-link :to="'/OtherLayout/msgDetail/'+item.postsId+'/'+item.title" class="list" v-for="(item,index) in list" :key="index">
             <div class="person">
                 <img :src="item.avatar" alt="">
                 <span>{{item.userName}}</span>
@@ -100,5 +100,7 @@
         }
     }
 }
-
+a{
+ color: black;
+}
 </style>

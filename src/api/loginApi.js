@@ -91,3 +91,17 @@ export function Delete(ids) {
     formData.append('ids',ids);
     return request.post('/api/bbs/bbsComment/site/remove',formData)
 }
+
+//我参与的
+
+export function Participation() {
+return request.post('/api/bbs/bbsPosts/join/list')
+}
+
+//删除帖子
+
+export function deletepost(ids) {
+    const formData=new FormData();
+    formData.append('ids',ids);
+    return request.post('/api/bbs/bbsPosts/site/remove',formData)
+}

@@ -60,6 +60,26 @@ export function revert(postsId,parentId,commentContent) {
 }
 
 
+//修改帖子
+export function emendpost(postsId,title) {
+const formData=new FormData();
+formData.append('postsId',postsId);
+formData.append('title',title);
+return request.post('/api/bbs/bbsPosts/site/edit',formData)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //publication 发表评论
 export function publicationComment(postsId, commentContent) {
     const url = `/api/bbs/bbsComment/site/add`;

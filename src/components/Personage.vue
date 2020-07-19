@@ -11,7 +11,7 @@
             <p><span>手机号</span>{{list.phonenumber}} </p>
         </div>
         <div class="box-person">
-            <p>我参与的</p>
+          <router-link to="/Participation">  <p>我参与的</p></router-link>
         <router-link to="/ModifiedData">
             <p>修改资料</p>
         </router-link>
@@ -48,8 +48,7 @@
                 Dialog.confirm({
                     title: '退出登录',
                     message: '是否退出登录',
-                })
-                    .then(() => {
+                }).then(() => {
                         exitlogin().then(() => {
                             // console.log(res)
                             this.$router.push('/login')

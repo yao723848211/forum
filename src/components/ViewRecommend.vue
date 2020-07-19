@@ -1,7 +1,7 @@
 <template>
     <div class="view-recommend-container">
         <div>
-            <ul class="container" v-for="(item,index) in list" :key="index" @click="toMsgDetail(item.postsId)">
+            <ul class="container" v-for="(item,index) in list" :key="index" @click="toMsgDetail(item.postsId,item.title)">
                 <li class="personInfo">
                     <span>{{item.userName}}</span>
                     <img :src="item.avatar"
@@ -41,6 +41,8 @@
             //点击进入该论坛的详情界面
             toMsgDetail(postsId){
                 this.$router.push("/OtherLayout/msgDetail/" +postsId)
+            toMsgDetail(postsId,title){
+                this.$router.push("/OtherLayout/msgDetail/" +postsId+'/'+title)
             }
         }
     }
