@@ -11,6 +11,7 @@ export default {
         loginClick(){
             if (this.isLogin==false){
                 this.$router.push('/login')
+                alert("请先登录")
                 return true
             }else {
                 this.$store.commit('changisLogin',{isLogin:true})

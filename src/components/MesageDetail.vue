@@ -28,7 +28,7 @@
 
 <script>
     import { publicationComment} from "../api/listApi";
-
+    // import { publicationComment} from "../api/listApi";
     import Loginminix from "../minix/Loginminix";
     import {comment} from "../api/loginApi";
     import {mapState} from "vuex";
@@ -44,7 +44,7 @@
             }
         },
         mixins: [Loginminix],
-        computed:{
+        computed: {
             ...mapState(['detail'])
         },
 
@@ -61,60 +61,64 @@
         },
         beforeCreate() {
             this.$store.commit('changeid',{detailId:this.$route.params.postsId})
-            this.$store.dispatch('details').then(res=>{
-                console.log(res)
-                // this.obj = res.data
-                // console.log(this.obj)
-                this.obj=this.detail
-})
-                console.log(this.detail)
+            this.$store.dispatch('details').then(()=> {
 
+                // this.obj = res.data
+            this.obj=this.detail
+
+            })
+            console.log(this.detail)
             },
 
         // mounted() {
         //     this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
         // },
-        methods: {
-            publicationContent() {
 
-                publicationComment(775, "eeeeeee").then(() => {
 
-                })
-            },
-            comment() {
-                this.comment1 = true
+    // mounted() {
+    //     this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
+    // },
+    methods: {
+        publicationContent()
+        {
 
-                if (this.loginClick()) {
-                    alert('需要登录才能评论')
-                    // this.$router.push('/login')
-                }
+            publicationComment(775, "eeeeeee").then(() => {
 
-                if (this.loginClick()) {
-                    alert('需要登录才能评论')
-                    // this.$router.push('/login')
-                }
-            },
-            btn1() {
-                console.log(111)
-                // console.log(this.content)
+            })
+        }
+    ,
+        comment()
+        {
+            this.comment1 = true
 
-                if (this.loginClick()) {
-                    alert('需要登录才能评论')
-                    // this.$router.push('/login')
-                } else {
-                    this.comment1 = false
-                    // console.log(this.content)
-                    console.log(this.$route.params.postsId)
-                    console.log(this.content)
-                    // this.$store.commit('changecontent',{content:this.content})
 
-                    comment(this.$route.params.postsId, this.content).then(function () {
-                        alert('评论成功')
-                        this.comment1 = true
-                    })
-                }
+
+            if (this.loginClick()) {
+                alert('需要登录才能评论')
+                this.$router.push('/login')
             }
         }
+    ,
+        btn1()
+        {
+            console.log(111)
+            // console.log(this.content)
+
+            if (this.loginClick()) {
+                alert('需要登录才能评论')
+                // this.$router.push('/login')
+            } else {
+                this.comment1 = false
+
+                // this.$store.commit('changecontent',{content:this.content})
+
+                comment(this.$route.params.postsId, this.content).then(function () {
+                    alert('评论成功')
+                    this.comment1 = true
+                })
+            }
+        }
+    }
     }
 </script>
 

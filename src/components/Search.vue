@@ -37,6 +37,7 @@
 
 <script>
     import {getPostList} from "../api/listApi";
+    import Loginminix from "../minix/Loginminix";
     // import instance from "../utils/http";
 
     export default {
@@ -49,6 +50,7 @@
 
             }
         },
+        mixins:[Loginminix],
         created() {
 
             this.history = JSON.parse(localStorage.getItem('key1'))

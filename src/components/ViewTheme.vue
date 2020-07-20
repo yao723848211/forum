@@ -28,7 +28,7 @@
             jumpDetailTheme(categoryId,name) {
                 console.log(name)
                 this.$router.push("/theme/friend/"+categoryId)
-                this.$store.commit("headerTitle/getAllTitle",{title:name})
+                this.$store.commit("headerTitle/getAllTitle1",{title:name})
             }
         }
     }
