@@ -32,10 +32,12 @@ Vue.use(FormItem)
 Vue.use(Input)
 import {Dialog} from 'vant';
 
-import { Dialog,Popup } from 'vant';
+import { Popup } from 'vant';
+import Cell from "vant/lib/cell";
 Vue.use(Dialog)
 Vue.use(ActionSheet);
 Vue.use(Popup)
+Vue.use(Cell)
 Vue.config.productionTip = false
 new Vue({
     router,

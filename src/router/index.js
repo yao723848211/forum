@@ -70,9 +70,24 @@ const routes = [
                 meta: {
                     title: "发布帖子"
                 }
-            }, {
+            },
+            {
                 path: "/OtherLayout/msgDetail/:postsId/:title",
                 component: MsgDetail,
+            },
+            {
+                path: "/news",
+                component: News,
+                meta: {
+                    title: "新闻列表"
+                }
+            },
+            {
+                path: "/news/detail/:articleId",
+                component: NewsDetails,
+                meta: {
+                    title: "新闻详情"
+                }
             },
             {
                 path: '/search',
@@ -85,20 +100,7 @@ const routes = [
                         component: MsgDetail
                     }]
                 },
-                    {
-                        path: "/news",
-                        component: News,
-                        meta: {
-                            title: "新闻列表"
-                        }
-                    },
-                    {
-                        path: "/news/detail/:articleId",
-                        component: NewsDetails,
-                        meta: {
-                            title: "新闻详情"
-                        }
-                    }
+
                 ]
             },
             {
@@ -135,7 +137,9 @@ const routes = [
                             title: "个人信息"
                         }
 
-                    }, {
+                    },
+
+                    {
                         path: '/ModifiedData',
                         component: ModifiedData,
                         meta: {
@@ -145,15 +149,20 @@ const routes = [
 
                     {
                         path: '/Participation',
-                        component: Participation
+                        component: Participation,
+                        meta: {
+                            title: '我参与的'
+                        }
                     },
 
 
                 ]
             }
+            ]
     }
 
 ]
+
 
 
 const router = new VueRouter({

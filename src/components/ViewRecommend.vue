@@ -39,10 +39,10 @@
         },
         methods:{
             //点击进入该论坛的详情界面
-            toMsgDetail(postsId){
-                this.$router.push("/OtherLayout/msgDetail/" +postsId)
+
+
             toMsgDetail(postsId,title){
-                this.$router.push("/OtherLayout/msgDetail/" +postsId+'/'+title)
+                this.$router.push("/OtherLayout/msgDetail/" +postsId+'/'+title);
             }
         }
     }

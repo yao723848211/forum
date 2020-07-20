@@ -27,8 +27,8 @@
 </template>
 
 <script>
-    import {postListDetail, publicationComment} from "../api/listApi";
     import { publicationComment} from "../api/listApi";
+
     import Loginminix from "../minix/Loginminix";
     import {comment} from "../api/loginApi";
     import {mapState} from "vuex";
@@ -47,7 +47,7 @@
         computed:{
             ...mapState(['detail'])
         },
-        mixins:[Loginminix],
+
         created() {
             console.log(this.$route.params.postsId)
 
@@ -61,15 +61,16 @@
         },
         beforeCreate() {
             this.$store.commit('changeid',{detailId:this.$route.params.postsId})
-            this.$store.dispatch('details').then(()=>{
-                // console.log(res)
-                this.obj = res.data
+            this.$store.dispatch('details').then(res=>{
+                console.log(res)
+                // this.obj = res.data
                 // console.log(this.obj)
+                this.obj=this.detail
 })
                 console.log(this.detail)
-                this.obj=this.detail
-            })
-        },
+
+            },
+
         // mounted() {
         //     this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
         // },

@@ -8,9 +8,9 @@
             {{title}}
         </div>
         <div>
-            <van-icon name="ellipsis"/>
+<!--            <van-icon name="ellipsis"/>-->
 
-            <van-cell is-link @click="showPopup">    <van-icon name="ellipsis" /></van-cell>
+            <van-cell is-link @click="showPopup"> <van-icon name="ellipsis" /></van-cell>
             <van-popup v-model="show"  position="bottom" :style="{ height: '100px',width:'100%' }" >
                     <button @click="delete1">删除帖子</button>
                     <button @click="emend">修改帖子</button>
@@ -40,8 +40,7 @@
                 return this.$store.state.headerTitle.title
             }
         },
-        methods: {
-            goBack() {
+
         data(){
             return {
                 show: false,
@@ -107,5 +106,10 @@
     button{
         display: block;
         width: 100%;
+    }
+
+    /deep/ .van-cell {
+        background-color:#26a2ff ;
+        padding: 7px 16px;
     }
 </style>
