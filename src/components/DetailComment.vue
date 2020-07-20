@@ -21,7 +21,6 @@
                     <span @click.capture="replyComment(item.commentId)">回复</span>
                 </div>
                 <van-action-sheet v-model="show" title="回复列表" :overlay=false cancel-text="回复" @click.capture="btn1">
-
                     <div class="content">
                         <div class="perContent" v-for="(item,index) in detailList" :key="index">
                             <div class="person">
@@ -36,7 +35,6 @@
                             <div>
                                 <span>{{item.updatedTime}}</span>
                             </div>
-
                         </div>
 
                     </div>
@@ -133,8 +131,10 @@
 
     .detailComment {
         border-top: 1px dashed black;
-        padding: 15px 10px;
-
+        padding-top: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 60px;
         .van-action-sheet__content {
             height: 240px;
             overflow: scroll;

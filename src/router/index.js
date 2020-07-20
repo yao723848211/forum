@@ -8,8 +8,6 @@ import OtherLayout from "../layout/OtherLayout";
 import MakeFriends from "../components/MakeFriends";
 import PublishComment from "../components/PublishComment";
 import ViewRecommend from "../components/ViewRecommend";
-
-
 import Sign from "../components/Sign";
 import ForgetPassword from "../components/ForgetPassword";
 import Personage from "../components/Personage";
@@ -73,32 +71,45 @@ const routes = [
             }, {
                 path: "/OtherLayout/msgDetail/:postsId/:title",
                 component: MsgDetail,
+                meta:{
+                    title:'详情'
+                }
+            },
+            {
+                path: "/news",
+                component: News,
+                meta: {
+                    title: "新闻列表"
+                }
+            },
+            {
+                path: "/news/detail/:articleId",
+                component: NewsDetails,
+                meta: {
+                    title: "新闻详情"
+                }
             },
             {
                 path: '/search',
                 component: Search,
+                meta:{
+                    title:"搜索",
+                },
                 children: [{
                     path: "/OtherLayout/msgDetail/:postsId",
                     component: MsgDetail,
+                    meta:{
+                        title:'详情'
+                    },
                     children: [{
                         path: "/OtherLayout/msgDetail/:postsId/:title",
-                        component: MsgDetail
+                        component: MsgDetail,
+                        meta:{
+                            title:'详情'
+                        }
                     }]
                 },
-                    {
-                        path: "/news",
-                        component: News,
-                        meta: {
-                            title: "新闻列表"
-                        }
-                    },
-                    {
-                        path: "/news/detail/:articleId",
-                        component: NewsDetails,
-                        meta: {
-                            title: "新闻详情"
-                        }
-                    }
+
                 ]
             },
             {
@@ -145,12 +156,15 @@ const routes = [
 
                     {
                         path: '/Participation',
-                        component: Participation
+                        component: Participation,
+                        meta: {
+                            title: '我参与的'
+                        }
                     },
 
 
                 ]
-            }
+            }]
     }
 
 ]

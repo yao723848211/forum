@@ -29,6 +29,7 @@
 
 <script>
     import {getPostList} from "../api/listApi";
+    import Loginminix from "../minix/Loginminix";
 
     export default {
         name: "Search",
@@ -38,6 +39,7 @@
                 list:[]
             }
         },
+        mixins:[Loginminix],
         created() {
 
         },

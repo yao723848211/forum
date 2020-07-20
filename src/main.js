@@ -11,8 +11,8 @@ import {Button} from 'vant';
 
 import {Field, CellGroup} from 'vant';
 import store from "./store";
-import {ActionSheet, Uploader, PullRefresh, Toast, List, NoticeBar} from 'vant';
-
+import {ActionSheet, Uploader, PullRefresh, Toast, List, NoticeBar,Cell,ShareSheet} from 'vant';
+Vue.use(Cell)
 Vue.use(NoticeBar)
 Vue.use(List);
 Vue.use(Uploader);
@@ -30,9 +30,9 @@ Vue.use(Toast)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(ShareSheet)
 import {Dialog} from 'vant';
-
-import { Dialog,Popup } from 'vant';
+import { Popup } from 'vant';
 Vue.use(Dialog)
 Vue.use(ActionSheet);
 Vue.use(Popup)

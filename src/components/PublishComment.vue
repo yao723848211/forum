@@ -3,7 +3,9 @@
         <div class="clearfix">
             <ul>
                 <h2>选择帖子分类</h2>
-                <li v-for="item in list" :key="item.categoryId" @click="acvieItem(item.categoryId)" :class="categoryId1==item.categoryId?'active':''">{{item.name}}</li>
+                <li v-for="item in list" :key="item.categoryId" @click="acvieItem(item.categoryId)"
+                    :class="categoryId1==item.categoryId?'active':''">{{item.name}}
+                </li>
             </ul>
         </div>
         <div class="clearfix">
@@ -20,7 +22,7 @@
                 </textarea>
             </div>
             <div class="fileuploader">
-                <van-uploader v-model="fileList" :after-read="afterRead"  multiple/>
+                <van-uploader v-model="fileList" :after-read="afterRead" multiple/>
                 <p>上传图片</p>
             </div>
             <div class="publishButton">
@@ -33,44 +35,46 @@
 <script>
     import {createPost, getThemeList} from "../api/listApi";
     import Loginminix from "../minix/Loginminix";
+    import {uploadingpic} from "../api/loginApi";
 
     export default {
         name: "PublishComment",
         data() {
             return {
-                categoryId1:'',
+                categoryId1: '',
                 list: [],
-                title:'',
-                publishContent:"",
-                fileList:[
-
-                ],
-                file:{}
+                title: '',
+                publishContent: "",
+                fileList: [],
+                file: {}
             }
         },
         created() {
             getThemeList().then(res => {
-                console.log(res)
+                // console.log(res)
                 this.list = res.rows;
             })
         },
-        mixins:[Loginminix],
-        methods:{
-            acvieItem(categoryId){
-                console.log(categoryId)
-                this.categoryId1=categoryId
+        mixins: [Loginminix],
+        methods: {
+            acvieItem(categoryId) {
+                // console.log(categoryId)
+                this.categoryId1 = categoryId
             },
-            afterRead(a){
-
+            afterRead(a) {
                 console.log(a)
-
-                this.file=a
-
+                this.file = a
             },
-            fabu(){
-                createPost(this.categoryId1, this.title, this.publishContent, this.file).then(res => {
-                    console.log(res);
+            fabu() {
+                console.log(this.file)
+                uploadingpic(this.file.file, "BBS").then(response => {
+                    // console.log(response.url)
+                    createPost(this.categoryId1, this.title, this.publishContent, response.url).then(res => {
+                        // console.log(res);
+                        alert(res.msg)
+                    })
                 })
+
             }
         },
     }
@@ -88,9 +92,11 @@
         display: block;
         clear: both;
     }
-    .active{
+
+    .active {
         background-color: burlywood;
     }
+
     .publish-comment-container {
         padding-bottom: 60px;
         box-sizing: border-box;
@@ -116,15 +122,18 @@
         }
 
         .publish_ {
-            border: 1px solid saddlebrown;
+            border-top: 1px solid saddlebrown;
 
             .pulishTitle {
                 margin-top: 10px;
                 margin-left: 30px;
+                font-size: 18px;
 
                 input {
-                    /*border-radius: 15px;*/
+                    border-radius: 15px;
                     outline-color: #26a2ff;
+                    padding-left: 15px;
+                    margin-left: 8px;
                 }
             }
 
@@ -141,14 +150,17 @@
                 display: flex;
                 justify-content: flex-end;
             }
-            .fileuploader{
+
+            .fileuploader {
                 display: flex;
                 justify-content: center;
-                .van-uploader__upload{
+
+                .van-uploader__upload {
                     width: 200px;
                     height: 200px;
                 }
-                p{
+
+                p {
                     font-size: 14px;
                     align-self: flex-end;
                 }

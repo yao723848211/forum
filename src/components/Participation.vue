@@ -15,6 +15,7 @@
 
 <script>
     import {Participation} from "../api/loginApi";
+    import Loginminix from "../minix/Loginminix";
 
     export default {
         name: "Participation",
@@ -23,6 +24,7 @@
                 list: []
             }
         },
+        mixins:[Loginminix],
         created() {
             Participation().then(res => {
                 console.log(res)
