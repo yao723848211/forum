@@ -54,13 +54,11 @@
                             // console.log(res)
                             this.$router.push('/login')
                             this.$store.commit('changisLogin', {isLogin:false})
-
-                        })
+                        }).catch(() => {
+                            this.$router.push('/login')
+                            this.$store.commit("changisLogin", {isLogin: false})
+                        });
                     })
-                    .catch(() => {
-                        this.$router.push('/index')
-                        this.$store.commit("changisLogin", {isLogin: false})
-                    });
             },
             amend() {
                 this.$refs.input1.click();
