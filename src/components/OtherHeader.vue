@@ -5,9 +5,9 @@
             <van-icon name="arrow-left"/>
             返回
         </div>
-        <div v-text="title?title:title1">
+        <div v-text="title?title:title1" style="margin-left: 106px;width: 94px; float: left">
         </div>
-        <div>
+        <div v-if="this.title === this.particular" style="float: right">
             <van-cell is-link @click="showPopup">
             </van-cell>
             <van-popup v-model="show" position="bottom" :style="{ height: '100px',width:'100%' }">
@@ -16,6 +16,7 @@
             </van-popup>
         </div>
         </div>
+        <div style="clear: both"></div>
     </div>
 </template>
 <script>
@@ -97,15 +98,16 @@
         height: 40px;
         line-height: 40px;
         background-color: #f5f7fa;
-        display: flex;
-        justify-content: space-between;
+        /*display: flex;*/
+        /*justify-content: space-between;*/
         font-size: 20px;
 
 
 
         .goBack {
-            display: flex;
-            align-items: center;
+            /*display: flex;*/
+            /*align-items: center;*/
+            float: left;
         }
     }
 
