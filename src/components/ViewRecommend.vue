@@ -89,7 +89,7 @@
         overflow: scroll;
         height: 1000px;
         padding-bottom: 50px;
-        background-color: #cccccc;
+        background-color: #f7f8fa;
 
         /deep/.van-share-sheet__options {
             display: flex;

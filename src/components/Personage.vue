@@ -113,7 +113,7 @@
     .box {
         box-shadow: -6px -1px 8px #7bc1f6;
         border-radius: 10px;
-
+        padding: 10px;
         p {
             margin-top: 10px;
         }
@@ -122,6 +122,7 @@
     }
 
     .box-person {
+        padding: 10px;
         p {
             margin-top: 10px;
         }

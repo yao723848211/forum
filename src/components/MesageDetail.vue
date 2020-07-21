@@ -153,7 +153,7 @@
 
             img {
                 width: 100%;
-                height: 240px;
+                height:100%
             }
         }
 

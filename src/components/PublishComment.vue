@@ -103,6 +103,7 @@
         padding-right: 10px;
         padding-bottom: 60px;
         box-sizing: border-box;
+
         h2 {
             display: flex;
             justify-content: center;

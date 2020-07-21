@@ -14,7 +14,7 @@
                         finished-text="没有更多了"
                         @load="onLoad"
                 >
-                    <div class="mvMusicDetailComment">
+                    <div class="mvMusicDetailComment" >
                         <div class="mvMusicDetailPerson">
                             <div v-for="(item,index) in comments" :key="index">
                                 <div class="PersonComment">
@@ -102,18 +102,23 @@
         padding-bottom: 60px;
         box-sizing: border-box;
 
+
         .mvMusicDetail {
+
             .mvMusicVideo {
                 video {
                     width: 100%;
                     height: 240px;
+                    /*position: fixed;*/
+                    /*top: 0;*/
+                    /*z-index: 100;*/
                 }
 
                 .mvMusicDetailTitle {
                     padding-left: 15px;
                     font-size: 14px;
                     color: #888888;
-                    border-bottom: 1px solid black;
+                    border-bottom: 1px solid #f7f8fa;
                     padding-bottom: 10px;
                 }
             }
@@ -154,7 +159,7 @@
                         .comment {
                             padding-left: 15px;
                             box-sizing: border-box;
-                            border-bottom: 1px solid black;
+                            border-bottom: 1px solid #f7f8fa;
                             margin-top: 5px;
                             padding-bottom: 5px;
                         }

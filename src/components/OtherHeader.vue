@@ -96,10 +96,12 @@
     .otherHeader {
         height: 40px;
         line-height: 40px;
-        background-color: #26a2ff;
+        background-color: #f5f7fa;
         display: flex;
         justify-content: space-between;
         font-size: 20px;
+
+
 
         .goBack {
             display: flex;
@@ -113,7 +115,7 @@
     }
 
     /deep/ .van-cell {
-        background-color: #26a2ff;
+        background-color:#f5f7fa;
         padding: 7px 16px;
     }
 

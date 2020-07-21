@@ -78,12 +78,13 @@
     }
 
     .musicContainer {
+        /*margin-top: 36px;*/
         .musicContainerConatent {
             display: flex;
             justify-content: space-around;
             padding: 20px;
             box-sizing: border-box;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid #cccccc;
 
             .img {
                 width: 40%;

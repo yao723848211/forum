@@ -48,6 +48,7 @@
         box-shadow: 2px 2px #ccc;
         background-color: #fff;
 
+
         h3 {
             float: left;
         }
