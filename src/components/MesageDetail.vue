@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import { publicationComment} from "../api/listApi";
+    import {publicationComment} from "../api/listApi";
     // import { publicationComment} from "../api/listApi";
     import Loginminix from "../minix/Loginminix";
     import {comment} from "../api/loginApi";
@@ -60,57 +60,55 @@
 
         },
         beforeCreate() {
-            this.$store.commit('changeid',{detailId:this.$route.params.postsId})
-            this.$store.dispatch('details').then(()=> {
+            this.$store.commit('changeid', {detailId: this.$route.params.postsId})
+            this.$store.dispatch('details').then(() => {
 
                 // this.obj = res.data
-            this.obj=this.detail
+                this.obj = this.detail
 
             })
             console.log(this.detail)
-            },
+        },
 
-    methods: {
-        publicationContent()
-        {
+        methods: {
+            publicationContent() {
 
-            publicationComment(775, "eeeeeee").then(() => {
+                publicationComment(775, "eeeeeee").then(() => {
 
-            })
-        }
-    ,
-        comment()
-        {
-            this.comment1 = true
-
-
-
-            if (this.loginClick()) {
-                alert('需要登录才能评论')
-                this.$router.push('/login')
-            }
-        }
-    ,
-        btn1()
-        {
-            console.log(111)
-            // console.log(this.content)
-
-            if (this.loginClick()) {
-                alert('需要登录才能评论')
-                // this.$router.push('/login')
-            } else {
-                this.comment1 = false
-
-                // this.$store.commit('changecontent',{content:this.content})
-
-                comment(this.$route.params.postsId, this.content).then(function () {
-                    alert('评论成功')
-                    this.comment1 = true
                 })
             }
+            ,
+            comment() {
+                this.comment1 = true
+
+
+                if (this.loginClick()) {
+                    alert('需要登录才能评论')
+                    this.$router.push('/login')
+                }
+            }
+            ,
+            btn1() {
+                console.log(111)
+                // console.log(this.content)
+
+                if (this.loginClick()) {
+                    alert('需要登录才能评论')
+                    // this.$router.push('/login')
+                } else if (this.content == '') {
+                    alert("输入框为空")
+                } else {
+                    this.comment1 = false
+
+                    // this.$store.commit('changecontent',{content:this.content})
+
+                    comment(this.$route.params.postsId, this.content).then(function () {
+                        alert('评论成功')
+                        this.comment1 = true
+                    })
+                }
+            }
         }
-    }
     }
 </script>
 

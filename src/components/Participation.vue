@@ -10,7 +10,6 @@
             </router-link>
     </div>
 </template>
-
 <script>
     import {Participation} from "../api/loginApi";
     import Loginminix from "../minix/Loginminix";
@@ -24,8 +23,9 @@
         },
         mixins:[Loginminix],
         created() {
+            //我参与的接口
             Participation().then(res => {
-                console.log(res)
+                // console.log(res)
                 this.list = res.rows
             })
         }

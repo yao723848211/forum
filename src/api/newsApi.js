@@ -14,3 +14,4 @@ export  function getNewsDetail(articleId) {
     const url=`/api/cms/article/open/detail/${articleId}`
     return request.get(url)
 }
+

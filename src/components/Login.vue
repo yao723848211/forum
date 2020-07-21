@@ -20,7 +20,7 @@
     import {islogin} from "../api/loginApi";
     import {mapState} from "vuex";
     import Loginminix from "../minix/Loginminix";
-
+    import { Toast } from 'vant';
     export default {
         name: "login",
         components: {},
@@ -33,18 +33,21 @@
         },
         mixins: [Loginminix],
         methods: {
+            //登录判断
             submitForm() {
                 if (this.number == '') {
                     alert('输入账号')
                 } else if (this.password == '') {
                     alert('输入密码')
                 } else {
+                    //登录的接口
                     islogin(this.number, this.password).then(res => {
-                        console.log(res)
+                        // console.log(res)
                         if (res.code == 0) {
+                            Toast.success('登录成功');
                             this.$store.commit('changisLogin', {isLogin: true})
                             this.$store.commit('changeisLogin1', {isLogin1: res.data})
-                            this.$router.push('/Personage')
+                            this.$router.push('/')
                         } else if (res.code == 500) {
                             alert(res.msg)
                         }

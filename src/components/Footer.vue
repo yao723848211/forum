@@ -1,6 +1,7 @@
 <template>
     <div class="footer-container">
         <div class="home-page"><van-icon name="wap-home" @click="toHomePage"/></div>
+        <router-link to="/music"  style="margin-top: 5px"><div><van-icon name="music-o" /></div></router-link>
         <div class="promulgate-comment" @click="publishPost"><van-icon name="add" /></div>
         <router-link to="/news"> <div style="margin-top: 10px"><van-icon name="new-o" /></div></router-link>
        <div class="person-info"><van-icon name="manager" @click="person" /></div>

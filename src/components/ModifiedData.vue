@@ -28,6 +28,7 @@
         mixins:[Loginminix],
         methods:{
             amend(){
+                //修改资料的接口
                 amendmataion(this.number,this.phone).then(res=>{
                     if (res.code==500){
                         alert(res.msg)

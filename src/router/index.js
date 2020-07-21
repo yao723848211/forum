@@ -19,6 +19,8 @@ import Loginlayout from "../layout/Loginlayout";
 import News from "../components/News";
 import NewsDetails from "../components/NewsDetails";
 import Participation from "../components/Participation";
+import Music from "../components/Music";
+import MvMusicDetail from "../components/MvMusicDetail";
 
 Vue.use(VueRouter)
 
@@ -147,6 +149,21 @@ const routes = [
 
             },
 
+            {
+                path: "/music",
+                component: Music,
+                meta:{
+                    title:"音乐列表"
+                }
+            },
+            {
+                path: "/music/detail",
+                component: MvMusicDetail,
+                name:"mvMusicDetail",
+                meta:{
+                    title:"音乐详情"
+                }
+            },
             {
                 path: '/search',
                 component: Search,

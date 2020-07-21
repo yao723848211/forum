@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--登录界面的组件-->
-<!--        <OtherHeader></OtherHeader>-->
+        <!--        界面渲染-->
         <router-view></router-view>
         <Footer></Footer>
     </div>
@@ -10,13 +10,11 @@
 <script>
 
     import Footer from "../components/Footer";
-    // import OtherHeader from "../components/OtherHeader";
 
     export default {
         name: "Loginlayout",
         components: {
             Footer,
-            // OtherHeader
         },
     }
 </script>

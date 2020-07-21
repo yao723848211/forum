@@ -25,10 +25,10 @@
             });
         },
         methods: {
-            jumpDetailTheme(categoryId,name) {
+            jumpDetailTheme(categoryId, name) {
                 console.log(name)
-                this.$router.push("/theme/friend/"+categoryId)
-                this.$store.commit("headerTitle/getAllTitle1",{title:name})
+                this.$router.push("/theme/friend/" + categoryId)
+                this.$store.commit("headerTitle/getAllTitle1", {title: name})
             }
         }
     }
@@ -41,8 +41,10 @@
     }
 
     .view-theme-container {
+        padding-top: 15px;
         padding-bottom: 50px;
         overflow: hidden;
+        box-sizing: border-box;
 
         div {
             width: calc(100% / 3);

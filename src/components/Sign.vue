@@ -1,56 +1,55 @@
 <template>
-    <div >
+    <div>
         <div class="sign-container">
-        <van-cell-group>
-            <van-field
-                    v-model="username"
-                    error
-                    required
-                    label="用户名"
-                    placeholder="请输入用户名"
+            <van-cell-group>
+                <van-field
+                        v-model="username"
+                        error
+                        required
+                        label="用户名"
+                        placeholder="请输入用户名"
 
-            />
-            <van-field
-                    v-model="name"
-                    error
-                    required
-                    label="昵称"
-                    placeholder="请输入昵称"
-            />
-            <van-field
-                    v-model="password"
-                    error
-                    required
-                    label="密码"
-                    placeholder="请输入密码"
-                    type="password"
-            />
-            <van-field
-                    v-model="phone"
-                    required
-                    label="手机号"
-                    placeholder="请输入手机号"
+                />
+                <van-field
+                        v-model="name"
+                        error
+                        required
+                        label="昵称"
+                        placeholder="请输入昵称"
+                />
+                <van-field
+                        v-model="password"
+                        error
+                        required
+                        label="密码"
+                        placeholder="请输入密码"
+                        type="password"
+                />
+                <van-field
+                        v-model="phone"
+                        required
+                        label="手机号"
+                        placeholder="请输入手机号"
 
 
-            />
-            <van-field
-                    v-model="sms"
-                    center
-                    clearable
-                    label="短信验证码"
-                    placeholder="请输入短信验证码"
-                    required
-            >
-                <template #button>
-                    <van-button size="small" type="primary" @click="code" :disabled="disabled">
-                        {{code1}}
+                />
+                <van-field
+                        v-model="sms"
+                        center
+                        clearable
+                        label="短信验证码"
+                        placeholder="请输入短信验证码"
+                        required
+                >
+                    <template #button>
+                        <van-button size="small" type="primary" @click="code" :disabled="disabled">
+                            {{code1}}
+                        </van-button>
+                    </template>
 
-                    </van-button>
-                </template>
-
-            </van-field>
-            <button class="btn" @click="sign">注册</button>
-        </van-cell-group>
+                </van-field>
+                <button class="btn" @click="sign">注册</button>
+            </van-cell-group>
         </div>
     </div>
 </template>
@@ -61,52 +60,51 @@
 
     export default {
         name: "Sign",
-        components:{
-
-        },
-        mixins:[Loginminix],
+        components: {},
+        mixins: [Loginminix],
         data() {
             return {
-                username:'',
-                phone:'',
-                password:'',
-                sms:'',
-                name:'',
+                username: '',
+                phone: '',
+                password: '',
+                sms: '',
+                name: '',
                 // timer:null,
-                code1:"发送验证码",
-                disabled:null
+                code1: "发送验证码",
+                disabled: null
             };
         },
-        methods:{
-            code(){
-        if (this.phone=='') {
-            alert('输入手机号')
-        }else {
-            this.disabled=true;
-            var time=60;
-            this.code1=time;
-            let timer= setInterval(() =>{
-                this.code1--;
-                if (  this.code1==0){
-                    clearInterval(timer);
+        methods: {
+            code() {
+                if (this.phone == '') {
+                    alert('输入手机号')
+                } else {
+                    this.disabled = true;
+                    var time = 60;
+                    this.code1 = time;
+                    let timer = setInterval(() => {
+                        this.code1--;
+                        if (this.code1 == 0) {
+                            clearInterval(timer);
 
-                    this.code1='发送验证码'
-                    this.disabled=false
+                            this.code1 = '发送验证码'
+                            this.disabled = false
+                        }
+                    }, 1000);
+
+                    //发送验证码的接口
+                    code(this.phone).then(() => {
+                        // console.log(res)
+                    })
                 }
-            },1000);
-
-
-            code(this.phone).then(res=>{
-                console.log(res)
-            })
-        }
 
             },
-            sign(){
-                signin(this.username,this.sms,this.phone,this.password,this.name).then(res=>{
-                    if (res.code==500){
+            sign() {
+                //注册的接口
+                signin(this.username, this.sms, this.phone, this.password, this.name).then(res => {
+                    if (res.code == 500) {
                         alert(res.msg)
-                    }else {
+                    } else {
                         alert('注册成功')
                         this.$router.push('/login')
                     }
@@ -121,16 +119,19 @@
     /*    margin:0;*/
     /*    padding: 0;*/
     /*}*/
- .sign-container {
-     margin-top: 10px;
-     padding: 10px;
- }
-   /deep/ .import {
-       width: 65%;
+    .sign-container {
+        margin-top: 10px;
+        padding: 10px;
     }
+
+    /deep/ .import {
+        width: 65%;
+    }
+
     .text {
         margin-right: 10px;
     }
+
     .btn {
         width: 65px;
         height: 30px;

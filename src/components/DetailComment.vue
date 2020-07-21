@@ -18,7 +18,8 @@
                 <div class="commentIcon">
                     <van-icon name="clear" @click.capture="delete1(item.commentId)" style="margin-right: 10px"/>
                     <i class="el-icon-chat-round" style="margin-right: 10px"></i>
-                    <span @click.capture="replyComment(item.commentId)" style='line-height: 16px;margin-right: 10px'>回复</span>
+                    <span @click.capture="replyComment(item.commentId)"
+                          style='line-height: 16px;margin-right: 10px'>回复</span>
                 </div>
                 <van-action-sheet v-model="show" title="回复列表" :overlay=false cancel-text="回复" @click.capture="btn1">
                     <div class="content">
@@ -75,7 +76,7 @@
             })
         },
         methods: {
-            //回复
+            //请求的回复列表
             replyComment(parentId) {
 
                 this.revert1 = true;
@@ -96,15 +97,16 @@
                         title: '删除',
                         message: '是否删除',
                     }).then(() => {
-                            Delete(ids).then(() => {
-                                commentList(this.$route.params.postsId).then(res => {
-                                    this.list = res.rows;
-                                })
+                        Delete(ids).then(() => {
+                            commentList(this.$route.params.postsId).then(res => {
+                                this.list = res.rows;
                             })
-                        }).catch(() => {
-                        });
+                        })
+                    }).catch(() => {
+                    });
                 }
             },
+            //单击回复
             btn1() {
                 if (this.loginClick()) {
                     alert('需要登录才能回复')
@@ -113,9 +115,9 @@
                     console.log(this.id)
                     revert(this.$route.params.postsId, this.id, this.content).then(res => {
                         this.content = ''
-                       if (res.code==0){
-                           alert('回复成功')
-                       }
+                        if (res.code == 0) {
+                            alert('回复成功')
+                        }
                     })
 
                 }
@@ -137,6 +139,7 @@
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 60px;
+
         .van-action-sheet__content {
             height: 240px;
             overflow: scroll;
@@ -149,6 +152,7 @@
             border-radius: 15px;
             margin-top: 15px;
             padding: 10px;
+
             .person {
                 display: flex;
 
@@ -198,6 +202,7 @@
                     height: 40px;
                     border-radius: 50%;
                 }
+
                 .personName {
                     margin-left: 15px;
                     display: flex;

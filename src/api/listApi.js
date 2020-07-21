@@ -2,7 +2,7 @@ import request from "../utils/http";
 
 
 //帖子列表
-export function getPostList( categoryId = '',title = '', postsId = '',) {
+export function getPostList(title = '', postsId = '', categoryId = '') {
     const url = `/api/bbs/bbsPosts/open/list`
     const formData = new FormData();
     formData.append("categoryId", categoryId)

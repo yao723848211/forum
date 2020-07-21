@@ -7,8 +7,8 @@
             {{list.userName}}
         </h2>
         <div class="box">
-            <p><span>账号</span>{{list.loginName}}</p>
-            <p><span>手机号</span>{{list.phonenumber}} </p>
+            <p><span>账号：</span>{{list.loginName}}</p>
+            <p><span>手机号：</span>{{list.phonenumber}} </p>
         </div>
         <div class="box-person">
           <router-link to="/Participation">  <p>我参与的</p></router-link>
@@ -49,6 +49,7 @@
                     title: '退出登录',
                     message: '是否退出登录',
                 }).then(() => {
+                        //退出登录的接口
                         exitlogin().then(() => {
                             // console.log(res)
                             this.$router.push('/login')
@@ -64,9 +65,11 @@
                 this.$refs.input1.click();
             },
             onImgUpload(e) {
+                //修改头像的接口
                 amendpic(e.target.files[0]).then(() => {
+                    //个人信息的接口
                     wathcpersonmataion().then(res => {
-                        console.log(res)
+                        // console.log(res)
                         this.list = res.data
                     })
                 })
@@ -76,8 +79,9 @@
         },
 
         created() {
+            //个人信息的接口
             wathcpersonmataion().then(res => {
-                console.log(res)
+                // console.log(res)
                 this.list = res.data
             });
             // this.list=this.islogin1

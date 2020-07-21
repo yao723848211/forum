@@ -53,7 +53,7 @@
         mixins:[Loginminix],
         created() {
 
-            this.history = JSON.parse(localStorage.getItem('key1'))
+            this.history = JSON.parse(localStorage.getItem('key1')||'[]')
         },
         methods: {
 
@@ -65,9 +65,7 @@
             },
 
             add() {
-
                 getPostList(this.value).then(res => {
-
                     this.list = res.rows
                 });
                 this.history.push(this.value)

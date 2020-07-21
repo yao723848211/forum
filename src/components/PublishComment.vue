@@ -98,10 +98,11 @@
     }
 
     .publish-comment-container {
+        padding-top:10px;
+        padding-left: 10px;
+        padding-right: 10px;
         padding-bottom: 60px;
         box-sizing: border-box;
-        padding: 10px;
-
         h2 {
             display: flex;
             justify-content: center;

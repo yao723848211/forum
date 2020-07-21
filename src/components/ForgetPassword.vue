@@ -89,6 +89,7 @@
 
             },
             forget() {
+                //忘记密码的接口
                 forgetpassword(this.username, this.password, this.phone, this.sms).then(res => {
                     console.log(res)
                     if (res.code == 0) {
