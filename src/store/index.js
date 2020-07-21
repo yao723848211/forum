@@ -14,7 +14,11 @@ const store = new Vuex.Store({
         list: [],
         detail: {},
         detailId: '',
-        particular: '详情'
+        particular: '详情',
+        music:'音乐列表',
+        person:'个人信息',
+        post:'发布帖子',
+        news:'新闻列表'
     },
     mutations: {
         changisLogin(state, payload) {

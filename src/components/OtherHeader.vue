@@ -1,20 +1,25 @@
 <template>
     <div>
         <div class="otherHeader">
-        <div class="goBack" @click="goBack">
-            <van-icon name="arrow-left"/>
-            返回
-        </div>
-        <div v-text="title?title:title1" style="margin-left: 106px;width: 94px; float: left">
-        </div>
-        <div v-if="this.title === this.particular" style="float: right">
-            <van-cell is-link @click="showPopup">
-            </van-cell>
-            <van-popup v-model="show" position="bottom" :style="{ height: '100px',width:'100%' }">
-                <button @click="delete1">删除帖子</button>
-                <button @click="emend">修改帖子</button>
-            </van-popup>
-        </div>
+            <div class="otherHeader-left">
+                <div class="goBack" @click="goBack"
+                     v-if="(this.title !== this.music)&&(this.title !== this.person)&&(this.title !== this.post)&&(this.title !== this.news)">
+                                <van-icon name="arrow-left"/>
+                    返回
+                </div>
+            </div>
+            <div class="otherHeader-title"  v-text="title?title:title1">
+            </div>
+            <div class="otherHeader-right" >
+                <div v-if="this.title === this.particular" >
+                    <van-cell is-link @click="showPopup">
+                    </van-cell>
+                    <van-popup v-model="show" position="bottom" :style="{ height: '100px',width:'100%' }">
+                        <button @click="delete1">删除帖子</button>
+                        <button @click="emend">修改帖子</button>
+                    </van-popup>
+                </div>
+            </div>
         </div>
         <div style="clear: both"></div>
     </div>
@@ -25,7 +30,8 @@
     import {emendpost} from "../api/listApi";
     import Loginminix from "../minix/Loginminix";
     import {mapState} from "vuex";
-    import { Toast } from 'vant';
+    import {Toast} from 'vant';
+
     export default {
         name: "OtherHeader",
         computed: {
@@ -35,7 +41,7 @@
             title() {
                 return this.$store.state.headerTitle.title
             },
-          ...mapState(['particular'])
+            ...mapState(['particular', 'music', 'news', 'person', 'post'])
         },
         mixins: [Loginminix],
         data() {
@@ -101,13 +107,13 @@
         /*display: flex;*/
         /*justify-content: space-between;*/
         font-size: 20px;
-
-
+        display: flex;
 
         .goBack {
-            /*display: flex;*/
-            /*align-items: center;*/
-            float: left;
+            display: flex;
+            align-items: center;
+            /*float: left;*/
+            width: 70px;
         }
     }
 
@@ -117,9 +123,16 @@
     }
 
     /deep/ .van-cell {
-        background-color:#f5f7fa;
+        background-color: #f5f7fa;
         padding: 7px 16px;
     }
-
-
+    .otherHeader-left{
+        width: 70px;
+    }
+    .otherHeader-title {
+        flex-grow: 1;text-align: center
+    }
+    .otherHeader-right {
+        width: 70px;
+    }
 </style>
