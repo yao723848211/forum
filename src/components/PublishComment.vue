@@ -72,6 +72,7 @@
                     createPost(this.categoryId1, this.title, this.publishContent, response.url).then(res => {
                         console.log(res);
                         alert(res.msg)
+                        this.$router.push('/index/theme')
                     })
                 })
 
