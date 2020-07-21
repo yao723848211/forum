@@ -18,5 +18,10 @@ export default {
                 return false
             }
         }
+    },
+    watch:{
+        $route(){
+            this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
+        }
     }
 }

@@ -115,8 +115,14 @@
                     console.log(this.id)
                     revert(this.$route.params.postsId, this.id, this.content).then(res => {
                         this.content = ''
+                        commentList(this.$route.params.postsId).then(res => {
+                            this.list = res.rows;
+                            console.log(this.list);
+                            // this.$store.commit('changelist',{list:res.rows})
+                        })
                         if (res.code == 0) {
                             alert('回复成功')
+
                         }
                     })
 

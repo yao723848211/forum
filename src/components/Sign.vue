@@ -133,9 +133,8 @@
     }
 
     .btn {
-        width: 65px;
+        width: 100%;
         height: 30px;
-        margin-left: 40%;
-        margin-top: 20px;
+        margin-top: 10px;
     }
 </style>

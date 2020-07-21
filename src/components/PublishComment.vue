@@ -58,7 +58,7 @@
         mixins: [Loginminix],
         methods: {
             acvieItem(categoryId) {
-                // console.log(categoryId)
+                console.log(categoryId)
                 this.categoryId1 = categoryId
             },
             afterRead(a) {
@@ -70,7 +70,7 @@
                 uploadingpic(this.file.file, "BBS").then(response => {
                     // console.log(response.url)
                     createPost(this.categoryId1, this.title, this.publishContent, response.url).then(res => {
-                        // console.log(res);
+                        console.log(res);
                         alert(res.msg)
                     })
                 })

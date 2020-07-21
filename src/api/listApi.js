@@ -15,6 +15,20 @@ export function getPostList(title = '', postsId = '', categoryId = '') {
     })
 }
 
+export function getPostList1(categoryId = '',title = '', postsId = '') {
+    const url = `/api/bbs/bbsPosts/open/list`
+    const formData = new FormData();
+    formData.append("categoryId", categoryId)
+    formData.append("postsId", postsId)
+    formData.append("title", title)
+    return request.post(url, formData).then(res => {
+        return {
+            ...res
+        }
+    })
+}
+
+
 //专题列表
 export function getThemeList(categoryId = '') {
     const url = `/api/bbs/bbsCategory/open/list?categoryId=${categoryId}`

@@ -61,11 +61,9 @@
         },
         beforeCreate() {
             this.$store.commit('changeid', {detailId: this.$route.params.postsId})
-            this.$store.dispatch('details').then(() => {
-
+            this.$store.dispatch('details',this.$route.params.postsId).then(() => {
                 // this.obj = res.data
                 this.obj = this.detail
-
             })
             console.log(this.detail)
         },

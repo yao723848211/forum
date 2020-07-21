@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import {getPostList} from "../api/listApi";
+    import {getPostList1} from "../api/listApi";
     import {Toast} from 'vant';
 
     export default {
@@ -58,7 +58,7 @@
             }
         },
         created() {
-            getPostList(this.$route.params.categoryId).then(res => {
+            getPostList1(this.$route.params.categoryId).then(res => {
                 // console.log(res)
                 this.list = res.rows
             })
