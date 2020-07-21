@@ -18,7 +18,8 @@ const store = new Vuex.Store({
         music:'音乐列表',
         person:'个人信息',
         post:'发布帖子',
-        news:'新闻列表'
+        news:'新闻列表',
+        login:'登录'
     },
     mutations: {
         changisLogin(state, payload) {

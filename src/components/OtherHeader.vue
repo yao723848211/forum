@@ -3,7 +3,7 @@
         <div class="otherHeader">
             <div class="otherHeader-left">
                 <div class="goBack" @click="goBack"
-                     v-if="(this.title !== this.music)&&(this.title !== this.person)&&(this.title !== this.post)&&(this.title !== this.news)">
+                     v-if="(this.title !== this.music)&&(this.title !== this.person)&&(this.title !== this.post)&&(this.title !== this.news)&&(this.title!==this.login)">
                                 <van-icon name="arrow-left"/>
                     返回
                 </div>
@@ -41,7 +41,7 @@
             title() {
                 return this.$store.state.headerTitle.title
             },
-            ...mapState(['particular', 'music', 'news', 'person', 'post'])
+            ...mapState(['particular', 'music', 'news', 'person', 'post','login'])
         },
         mixins: [Loginminix],
         data() {
