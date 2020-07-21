@@ -59,6 +59,9 @@
                     })
                     .catch(() => {
                         // on cancel
+                        this.$store.commit("changisLogin", {isLogin: false})
+                        this.$router.push("/login")
+
                     });
             },
             amend() {
