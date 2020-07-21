@@ -51,6 +51,7 @@
     import {Delete} from "../api/loginApi";
     import Loginminix from "../minix/Loginminix";
     import Dialog from "vant/lib/dialog";
+    // import {mapState} from "vuex";
 
     export default {
         name: "DetailComment",
@@ -74,6 +75,14 @@
                 console.log(this.list);
                 // this.$store.commit('changelist',{list:res.rows})
             })
+            // console.log(this.$route.params.postsId)
+            // this.$store.dispatch('comment',{postsId2:this.$route.params.postsId}).then(res=>{
+            //     console.log(res)
+            //     this.list=this.postsId1
+            // })
+        },
+        computed:{
+            // ...mapState(['postsId1'])
         },
         methods: {
             //请求的回复列表

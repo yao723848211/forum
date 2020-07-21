@@ -56,16 +56,16 @@
             //     this.obj = res.data
             //     // console.log(this.obj)
             // })
-
-
-        },
-        beforeCreate() {
             this.$store.commit('changeid', {detailId: this.$route.params.postsId})
-            this.$store.dispatch('details',this.$route.params.postsId).then(() => {
+            this.$store.dispatch('details',{detailId:this.$route.params.postsId}).then(() => {
                 // this.obj = res.data
                 this.obj = this.detail
             })
             console.log(this.detail)
+
+        },
+        beforeCreate() {
+
         },
 
         methods: {
@@ -100,8 +100,14 @@
 
                     // this.$store.commit('changecontent',{content:this.content})
 
-                    comment(this.$route.params.postsId, this.content).then(function () {
+                    comment(this.$route.params.postsId, this.content).then( ()=> {
                         alert('评论成功')
+                        this.$store.dispatch('details',{detailId:this.$route.params.postsId}).then(() => {
+                            // this.obj = res.data
+                            this.obj = this.detail
+                            this.comment1 = false
+                        })
+                        console.log(this.detail)
                         this.comment1 = true
                     })
                 }

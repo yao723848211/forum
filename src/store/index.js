@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import headerTitle from "./moudels/headerTitle";
-import {postListDetail} from "../api/listApi";
+import { postListDetail} from "../api/listApi";
 
 Vue.use(Vuex)
 
@@ -19,7 +19,8 @@ const store = new Vuex.Store({
         person:'个人信息',
         post:'发布帖子',
         news:'新闻列表',
-        login:'登录'
+        login:'登录',
+        // postsId1:[]
     },
     mutations: {
         changisLogin(state, payload) {
@@ -39,18 +40,27 @@ const store = new Vuex.Store({
         },
         changeid(state, payload) {
             state.detailId = payload.detailId
-        }
+        },
+        // changecomment(state,payload){
+        //     state.postsId1=payload.postsId1
+        // }
     },
     getters: {},
     actions: {
-        details(context) {
-            return postListDetail(this.state.detailId).then(res => {
+        details(context,payload) {
+            return postListDetail(payload.detailId).then(res => {
                 console.log(res)
                 // this.detail = res.data
                 context.commit('changdetail', {detail: res.data})
                 // console.log(this.obj)
             })
-        }
+        },
+        // comment(context,payload){
+        //  return commentList(payload.postsId2).then(res => {
+        //      context.commit('changecomment', {postsId1: res.data})
+        //         // this.$store.commit('changelist',{list:res.rows})
+        //     })
+        // }
     },
     modules: {
         headerTitle: headerTitle
