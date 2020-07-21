@@ -91,6 +91,63 @@ const routes = [
                 }
             },
             {
+                path: '/login',
+                component: Loginlayout,
+                children: [
+                    {
+                        path: '/login',
+                        component: Login,
+                        meta: {
+                            title: "登录"
+                        }
+                    },
+
+                    {
+                        path: '/Sign',
+                        component: Sign,
+                        meta: {
+                            title: "注册"
+                        }
+                    },
+                    {
+                        path: '/ForgetPassword',
+                        component: ForgetPassword,
+                        meta: {
+                            title: "忘记密码",
+                        }
+                    },
+                    {
+                        path: '/Personage',
+                        component: Personage,
+                        meta: {
+                            isAuth: true,
+                            title: "个人信息"
+                        }
+
+                    },
+
+                    {
+                        path: '/ModifiedData',
+                        component: ModifiedData,
+                        meta: {
+                            title: "修改资料"
+                        }
+                    },
+
+                    {
+                        path: '/Participation',
+                        component: Participation,
+                        meta: {
+                            title: '我参与的'
+                        }
+                    },
+
+
+                ]
+
+            },
+
+            {
                 path: '/search',
                 component: Search,
                 children: [{
@@ -138,61 +195,7 @@ const routes = [
 
                         ]
                     },
-                    {
-                        path: '/login',
-                        component: Loginlayout,
-                        children: [
-                            {
-                                path: '/login',
-                                component: Login,
-                                meta: {
-                                    title: "登录"
-                                }
-                            },
 
-                            {
-                                path: '/Sign',
-                                component: Sign,
-                                meta: {
-                                    title: "注册"
-                                }
-                            },
-                            {
-                                path: '/ForgetPassword',
-                                component: ForgetPassword,
-                                meta: {
-                                    title: "忘记密码",
-                                }
-                            },
-                            {
-                                path: '/Personage',
-                                component: Personage,
-                                meta: {
-                                    isAuth: true,
-                                    title: "个人信息"
-                                }
-
-                            },
-
-                            {
-                                path: '/ModifiedData',
-                                component: ModifiedData,
-                                meta: {
-                                    title: "修改资料"
-                                }
-                            },
-
-                            {
-                                path: '/Participation',
-                                component: Participation,
-                                meta: {
-                                    title: '我参与的'
-                                }
-                            },
-
-
-                        ]
-                    }
                 ]
             }
 

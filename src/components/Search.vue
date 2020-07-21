@@ -71,6 +71,8 @@
                     this.list = res.rows
                 });
                 this.history.push(this.value)
+                let setList = new Set(this.history)
+                this.history = Array.from(setList)
                 localStorage.setItem('key1', JSON.stringify(this.history))
 
             },

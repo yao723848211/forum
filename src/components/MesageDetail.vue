@@ -15,8 +15,8 @@
         </div>
         <!--发表评论-->
         <div class="comment" @click="publicationContent">
-            <van-icon name="chat-o"/>
-            <span @click.capture="comment">评论</span>
+            <van-icon name="chat-o" style="line-height: 25px"/>
+            <span @click.capture="comment" style="margin-left: -16px">评论</span>
 
         </div>
         <div class="discuss" v-if="this.comment1==true">
@@ -70,14 +70,6 @@
             console.log(this.detail)
             },
 
-        // mounted() {
-        //     this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
-        // },
-
-
-    // mounted() {
-    //     this.$store.commit("headerTitle/getAllTitle",{title:this.$route.meta.title})
-    // },
     methods: {
         publicationContent()
         {

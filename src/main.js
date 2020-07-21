@@ -11,7 +11,7 @@ import {Button} from 'vant';
 
 import {Field, CellGroup} from 'vant';
 import store from "./store";
-import {ActionSheet, Uploader, PullRefresh, Toast, List, NoticeBar,Cell,ShareSheet} from 'vant';
+import {ActionSheet, Uploader, PullRefresh, Toast, List, NoticeBar,Cell,ShareSheet,NavBar} from 'vant';
 Vue.use(Cell)
 Vue.use(NoticeBar)
 Vue.use(List);
@@ -39,6 +39,7 @@ Vue.use(Dialog)
 Vue.use(ActionSheet);
 Vue.use(Popup)
 Vue.use(Cell)
+Vue.use(NavBar)
 Vue.config.productionTip = false
 new Vue({
     router,

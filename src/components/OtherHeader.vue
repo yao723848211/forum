@@ -1,38 +1,30 @@
 <template>
-    <div class="otherHeader">
+    <div>
+        <div class="otherHeader">
         <div class="goBack" @click="goBack">
             <van-icon name="arrow-left"/>
             返回
         </div>
         <div v-text="title?title:title1">
-<!--            {{title + title1}}-->
         </div>
         <div>
-            <!--            <van-icon name="ellipsis"/>-->
             <van-cell is-link @click="showPopup">
-                <van-icon name="ellipsis"/>
             </van-cell>
             <van-popup v-model="show" position="bottom" :style="{ height: '100px',width:'100%' }">
                 <button @click="delete1">删除帖子</button>
                 <button @click="emend">修改帖子</button>
-<!--            <van-icon name="ellipsis"/>-->
             </van-popup>
-
-
+        </div>
         </div>
     </div>
 </template>
-
 <script>
-    // import {mapState} from "vuex";
-
     import {deletepost} from "../api/loginApi";
     import Dialog from "vant/lib/dialog";
     import {emendpost} from "../api/listApi";
     import Loginminix from "../minix/Loginminix";
     import {mapState} from "vuex";
-    // import {commentList} from "../api/listApi";
-
+    import { Toast } from 'vant';
     export default {
         name: "OtherHeader",
         computed: {
@@ -42,9 +34,6 @@
             title() {
                 return this.$store.state.headerTitle.title
             },
-            // particular() {
-            //     return this.$store.state.particular
-            // }
           ...mapState(['particular'])
         },
         mixins: [Loginminix],
@@ -55,6 +44,12 @@
         },
 
         methods: {
+            onClickLeft() {
+                Toast('返回');
+            },
+            onClickRight() {
+                Toast('按钮');
+            },
             goBack() {
                 this.$router.back();
             }
@@ -92,10 +87,6 @@
                     })
                 }).catch(() => {
                 });
-
-                // this.$store.dispatch('details').then(res=>{
-                //     this.$store.commit('changdetail',res.data)
-                // })
             }
         }
     }

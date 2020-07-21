@@ -59,8 +59,6 @@
                     .catch(() => {
                         // on cancel
                     });
-
-
             },
             amend() {
                 this.$refs.input1.click();

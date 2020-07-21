@@ -1,6 +1,5 @@
 <template>
     <div>
-
             <router-link :to="'/OtherLayout/msgDetail/'+item.postsId+'/'+item.title" tag="div"  class="participation-content" v-for="(item,index) in list" :key="index">
                 <div>
                     <h3>{{item.title}}</h3>
@@ -9,7 +8,6 @@
                 <div style="clear: both"></div>
                 <span>楼主</span><span>{{item.userName}}</span>
             </router-link>
-
     </div>
 </template>
 

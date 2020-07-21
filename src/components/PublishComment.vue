@@ -16,14 +16,14 @@
                 标题:<input type="text" placeholder="请输入发布标题" v-model="title">
             </div>
             <div>
-                <h4>发布内容:</h4>
+                <h4 style="margin-top: 10px">发布内容:</h4>
                 <textarea class="publishText" v-model="publishContent">
 
                 </textarea>
             </div>
             <div class="fileuploader">
                 <van-uploader v-model="fileList" :after-read="afterRead" multiple/>
-                <p>上传图片</p>
+
             </div>
             <div class="publishButton">
                 <van-button type="primary" style="width: 100px;margin: 0 auto" @click="fabu">发布</van-button>
@@ -100,6 +100,7 @@
     .publish-comment-container {
         padding-bottom: 60px;
         box-sizing: border-box;
+        padding: 10px;
 
         h2 {
             display: flex;
@@ -111,7 +112,7 @@
         ul {
             li {
                 float: left;
-                width: calc(100% / 4);
+                width: calc(100% / 6);
                 height: 25px;
                 box-sizing: border-box;
                 display: flex;
@@ -131,9 +132,11 @@
 
                 input {
                     border-radius: 15px;
-                    outline-color: #26a2ff;
+                    /*outline-color: #26a2ff;*/
                     padding-left: 15px;
                     margin-left: 8px;
+                    border: 1px solid #cccccc;
+                    height: 35px;
                 }
             }
 
@@ -142,7 +145,7 @@
                 height: 200px;
                 overflow: auto;
                 border: 1px solid brown;
-                margin: 0 auto;
+                margin: 10px auto;
                 display: flex;
             }
 
@@ -154,6 +157,7 @@
             .fileuploader {
                 display: flex;
                 justify-content: center;
+                margin-top: 20px;
 
                 .van-uploader__upload {
                     width: 200px;
@@ -170,4 +174,15 @@
         }
 
     }
+    h2 {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+.clearfix{
+
+    li{
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+}
 </style>

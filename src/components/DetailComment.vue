@@ -16,9 +16,9 @@
                     <span>{{item.commentContent}}</span>
                 </div>
                 <div class="commentIcon">
-                    <van-icon name="clear" @click.capture="delete1(item.commentId)"/>
-                    <i class="el-icon-chat-round"></i>
-                    <span @click.capture="replyComment(item.commentId)">回复</span>
+                    <van-icon name="clear" @click.capture="delete1(item.commentId)" style="margin-right: 10px"/>
+                    <i class="el-icon-chat-round" style="margin-right: 10px"></i>
+                    <span @click.capture="replyComment(item.commentId)" style='line-height: 16px;margin-right: 10px'>回复</span>
                 </div>
                 <van-action-sheet v-model="show" title="回复列表" :overlay=false cancel-text="回复" @click.capture="btn1">
                     <div class="content">
@@ -67,7 +67,7 @@
 
         },
         created() {
-            // console.log(this.$route.params.postsId)
+            //获取评论列表
             commentList(this.$route.params.postsId).then(res => {
                 this.list = res.rows;
                 console.log(this.list);
@@ -75,6 +75,7 @@
             })
         },
         methods: {
+            //回复
             replyComment(parentId) {
 
                 this.revert1 = true;
@@ -86,6 +87,7 @@
                 })
                 this.id = parentId
             },
+            //删除
             delete1(ids) {
                 if (this.loginClick()) {
                     alert('需要登录才能删除')
@@ -146,7 +148,7 @@
             background-color: burlywood;
             border-radius: 15px;
             margin-top: 15px;
-
+            padding: 10px;
             .person {
                 display: flex;
 
@@ -172,7 +174,7 @@
                 display: flex;
                 justify-content: flex-end;
                 height: 30px;
-                margin-top: 15px;
+                margin-top: 8px;
 
                 .content {
                     padding: 16px 16px 160px;
@@ -204,6 +206,7 @@
 
                 .commentContext {
                     font-size: 14px;
+                    padding: 10px;
                 }
             }
         }
