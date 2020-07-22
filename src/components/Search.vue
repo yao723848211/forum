@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="background-color: #f5f7fa; ">
+        <div style="background-color: #f5f7fa;margin-top: 40px ">
             <van-search
                     v-model="value"
                     placeholder="请输入搜索关键词"
