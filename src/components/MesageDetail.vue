@@ -17,7 +17,6 @@
         <div class="comment" @click="publicationContent">
             <van-icon name="chat-o" style="line-height: 25px"/>
             <span @click.capture="comment" style="margin-left: -16px">评论</span>
-
         </div>
         <div class="discuss" v-if="this.comment1==true">
             <input type="text" class="content" v-model="content">
@@ -32,6 +31,7 @@
     import Loginminix from "../minix/Loginminix";
     import {comment} from "../api/loginApi";
     import {mapState} from "vuex";
+    import Toast from "vant/lib/toast";
     // import {comment} from "../api/loginApi";
 
     export default {
@@ -45,26 +45,18 @@
         },
         mixins: [Loginminix],
         computed: {
-            ...mapState(['detail'])
+            ...mapState(['detail', 'postsId'])
         },
 
         created() {
             console.log(this.$route.params.postsId)
 
-            // postListDetail(this.$route.params.postsId).then(res => {
-            //     console.log(res)
-            //     this.obj = res.data
-            //     // console.log(this.obj)
-            // })
             this.$store.commit('changeid', {detailId: this.$route.params.postsId})
-            this.$store.dispatch('details',{detailId:this.$route.params.postsId}).then(() => {
+            this.$store.dispatch('details', {detailId: this.$route.params.postsId}).then(() => {
                 // this.obj = res.data
                 this.obj = this.detail
             })
             console.log(this.detail)
-
-        },
-        beforeCreate() {
 
         },
 
@@ -81,7 +73,7 @@
 
 
                 if (this.loginClick()) {
-                    alert('需要登录才能评论')
+                    Toast('需要登录才能评论')
                     this.$router.push('/login')
                 }
             }
@@ -91,24 +83,17 @@
                 // console.log(this.content)
 
                 if (this.loginClick()) {
-                    alert('需要登录才能评论')
+                    Toast('需要登录才能评论')
                     // this.$router.push('/login')
                 } else if (this.content == '') {
-                    alert("输入框为空")
+                    Toast("输入框为空")
                 } else {
                     this.comment1 = false
+                    comment(this.$route.params.postsId, this.content).then(() => {
 
-                    // this.$store.commit('changecontent',{content:this.content})
-
-                    comment(this.$route.params.postsId, this.content).then( ()=> {
-                        alert('评论成功')
-                        this.$store.dispatch('details',{detailId:this.$route.params.postsId}).then(() => {
-                            // this.obj = res.data
-                            this.obj = this.detail
-                            this.comment1 = false
-                        })
-                        console.log(this.detail)
-                        this.comment1 = true
+                        Toast('评论成功');
+                        this.$store.dispatch('initCommentList',{postsId:this.$route.params.postsId})
+                        this.comment1 = false
                     })
                 }
             }
@@ -157,7 +142,7 @@
 
             img {
                 width: 100%;
-                height:100%
+                height: 100%
             }
         }
 

@@ -36,9 +36,9 @@
             //登录判断
             submitForm() {
                 if (this.number == '') {
-                    alert('输入账号')
+                    Toast('输入账号')
                 } else if (this.password == '') {
-                    alert('输入密码')
+                    Toast('输入密码')
                 } else {
                     //登录的接口
                     islogin(this.number, this.password).then(res => {
@@ -49,7 +49,7 @@
                             this.$store.commit('changeisLogin1', {isLogin1: res.data})
                             this.$router.push('/')
                         } else if (res.code == 500) {
-                            alert(res.msg)
+                            Toast(res.msg)
                         }
                     })
                 }

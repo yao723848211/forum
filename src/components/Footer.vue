@@ -10,6 +10,7 @@
 
 <script>
     import {mapState} from "vuex";
+    import Toast from "vant/lib/toast";
 
     export default {
         name: "Footer",
@@ -22,7 +23,7 @@
                     this.$router.push('/publish')
                 }else {
                     this.$router.push('/login')
-                    alert("请先登录在发表评论")
+                    Toast("请先登录在发表评论")
                 }
             },
             person(){

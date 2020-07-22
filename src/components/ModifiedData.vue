@@ -14,6 +14,7 @@
     import {amendmataion} from "../api/loginApi";
     import Dialog from "vant/lib/dialog";
     import Loginminix from "../minix/Loginminix";
+    import Toast from "vant/lib/toast";
     export default {
         name: "ModifiedData",
         data() {
@@ -31,7 +32,7 @@
                 //修改资料的接口
                 amendmataion(this.number,this.phone).then(res=>{
                     if (res.code==500){
-                        alert(res.msg)
+                        Toast(res.msg)
                     }else {
                         Dialog.confirm({
                             title: '修改信息',

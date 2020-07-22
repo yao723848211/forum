@@ -47,10 +47,12 @@
 </template>
 
 <script>
-    import {commentList, replyComment, revert} from "../api/listApi";
+    import {replyComment, revert} from "../api/listApi";
     import {Delete} from "../api/loginApi";
     import Loginminix from "../minix/Loginminix";
     import Dialog from "vant/lib/dialog";
+    import {mapState} from "vuex";
+    import Toast from "vant/lib/toast";
     // import {mapState} from "vuex";
 
     export default {
@@ -58,7 +60,6 @@
         mixins: [Loginminix],
         data() {
             return {
-                list: [],
                 show: false,
                 detailList: [],
                 revert1: false,
@@ -70,24 +71,17 @@
         },
         created() {
             //获取评论列表
-            commentList(this.$route.params.postsId).then(res => {
-                this.list = res.rows;
-                console.log(this.list);
-                // this.$store.commit('changelist',{list:res.rows})
-            })
-            // console.log(this.$route.params.postsId)
-            // this.$store.dispatch('comment',{postsId2:this.$route.params.postsId}).then(res=>{
-            //     console.log(res)
-            //     this.list=this.postsId1
-            // })
+            this.$store.dispatch('initCommentList',{postsId:this.$route.params.postsId})
         },
         computed:{
-            // ...mapState(['postsId1'])
+            ...mapState({
+                list:"commentList",
+                postsId: "postsId"
+            })
         },
         methods: {
             //请求的回复列表
             replyComment(parentId) {
-
                 this.revert1 = true;
                 this.show = !this.show;
                 console.log(parentId)
@@ -100,16 +94,17 @@
             //删除
             delete1(ids) {
                 if (this.loginClick()) {
-                    alert('需要登录才能删除')
+                    Toast('需要登录才能删除')
                 } else {
                     Dialog.confirm({
                         title: '删除',
                         message: '是否删除',
                     }).then(() => {
                         Delete(ids).then(() => {
-                            commentList(this.$route.params.postsId).then(res => {
-                                this.list = res.rows;
-                            })
+                            // commentList(this.$route.params.postsId).then(res => {
+                            //     this.list = res.rows;
+                            // })
+                            this.$store.dispatch('initCommentList',{postsId:this.$route.params.postsId})
                         })
                     }).catch(() => {
                     });
@@ -118,20 +113,15 @@
             //单击回复
             btn1() {
                 if (this.loginClick()) {
-                    alert('需要登录才能回复')
+                    Toast('需要登录才能回复')
                 } else {
                     this.revert1 = false;
                     console.log(this.id)
                     revert(this.$route.params.postsId, this.id, this.content).then(res => {
                         this.content = ''
-                        commentList(this.$route.params.postsId).then(res => {
-                            this.list = res.rows;
-                            console.log(this.list);
-                            // this.$store.commit('changelist',{list:res.rows})
-                        })
                         if (res.code == 0) {
-                            alert('回复成功')
-
+                            Toast('回复成功')
+                            this.$store.dispatch('initCommentList',{postsId:this.$route.params.postsId})
                         }
                     })
 

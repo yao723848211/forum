@@ -46,6 +46,7 @@
 <script>
     import {code, forgetpassword} from "../api/loginApi";
     import Loginminix from "../minix/Loginminix";
+    import Toast from "vant/lib/toast";
 
 
     export default {
@@ -66,7 +67,7 @@
         methods: {
             code() {
                 if (this.phone == '') {
-                    alert('输入手机号')
+                    Toast('输入手机号')
                 } else {
                     this.disabled = true;
                     var time = 60;
@@ -95,7 +96,7 @@
                     if (res.code == 0) {
                         this.$router.push('/login')
                     } else {
-                        alert(res.msg)
+                        Toast(res.msg)
                     }
                 })
             }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import headerTitle from "./moudels/headerTitle";
-import { postListDetail} from "../api/listApi";
+import {commentList, postListDetail} from "../api/listApi";
 
 Vue.use(Vuex)
 
@@ -15,12 +15,13 @@ const store = new Vuex.Store({
         detail: {},
         detailId: '',
         particular: '详情',
-        music:'音乐列表',
-        person:'个人信息',
-        post:'发布帖子',
-        news:'新闻列表',
-        login:'登录',
-        // postsId1:[]
+        music: '音乐列表',
+        person: '个人信息',
+        post: '发布帖子',
+        news: '新闻列表',
+        login: '登录',
+        postsId: [],
+        commentList: []
     },
     mutations: {
         changisLogin(state, payload) {
@@ -41,26 +42,31 @@ const store = new Vuex.Store({
         changeid(state, payload) {
             state.detailId = payload.detailId
         },
-        // changecomment(state,payload){
-        //     state.postsId1=payload.postsId1
-        // }
+        changecomment(state, payload) {
+            state.postsId = payload.postsId
+        },
+        // 修改评论列表
+        changeCommentList(state, payload) {
+            state.commentList = payload.commentList
+        }
     },
     getters: {},
     actions: {
-        details(context,payload) {
+
+        //帖子详情列表
+        details(context, payload) {
             return postListDetail(payload.detailId).then(res => {
                 console.log(res)
-                // this.detail = res.data
                 context.commit('changdetail', {detail: res.data})
-                // console.log(this.obj)
             })
         },
-        // comment(context,payload){
-        //  return commentList(payload.postsId2).then(res => {
-        //      context.commit('changecomment', {postsId1: res.data})
-        //         // this.$store.commit('changelist',{list:res.rows})
-        //     })
-        // }
+
+        // 初始化评论列表
+        initCommentList(context,payload){
+            return commentList(payload.postsId).then(res => {
+                context.commit('changeCommentList', {commentList: res.rows})
+            });
+        }
     },
     modules: {
         headerTitle: headerTitle
