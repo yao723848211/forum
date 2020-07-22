@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="modified">
         <van-field v-model="number" type="text" label="用户名" />
         <!-- 输入密码 -->
 
@@ -58,7 +58,14 @@
 <style scoped lang="less">
 .amend-box {
 
-    margin-left: 40%;
-    margin-top: 20px;
+    /*margin-left: 40%;*/
+    /*margin-top: 20px;*/
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
 }
+    .modified {
+        margin-top: 40px;
+    }
 </style>

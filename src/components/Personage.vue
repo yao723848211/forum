@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="personmation">
         <img src="../assets/10583098_172043022317_2.jpg" v-if="!list.avatar" class="pic" @click="amend">
         <input type="file" style="display: none" ref="input1" @change="onImgUpload">
         <img :src="list.avatar" v-if="list.avatar" class="pic" @click="amend">
@@ -17,6 +18,7 @@
         </router-link>
             <p @click="exit">退出登录</p>
         </div>
+    </div>
     </div>
 </template>
 
@@ -128,5 +130,8 @@
     }
     a{
         color: black;
+    }
+    .personmation{
+    margin-top: 40px;
     }
 </style>

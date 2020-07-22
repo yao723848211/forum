@@ -113,6 +113,7 @@
         padding: 10px 20px;
         box-sizing: border-box;
         overflow: scroll;
+        margin-top: 40px;
 
         .personIntro {
             display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="makefriend">
         <router-view></router-view>
     </div>
 </template>
@@ -13,6 +13,8 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.makefriend {
+    margin-top: 40px;
+}
 </style>

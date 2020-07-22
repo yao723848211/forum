@@ -120,7 +120,7 @@
     /*    padding: 0;*/
     /*}*/
     .sign-container {
-        margin-top: 10px;
+        margin-top: 40px;
         padding: 10px;
     }
 

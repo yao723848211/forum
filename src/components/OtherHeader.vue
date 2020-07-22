@@ -108,6 +108,10 @@
         /*justify-content: space-between;*/
         font-size: 20px;
         display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
 
         .goBack {
             display: flex;

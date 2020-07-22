@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="login">
         <div class="login-container">
             <h2>forum</h2>
             <!--登录注册界面-->
@@ -77,5 +77,8 @@
     .btn-box {
         margin-bottom: 20px;
         margin-top: 20px;
+    }
+    .login {
+        margin-top: 80px;
     }
 </style>

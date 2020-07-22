@@ -79,6 +79,7 @@
 
     .musicContainer {
         /*margin-top: 36px;*/
+        margin-top: 40px;
         .musicContainerConatent {
             display: flex;
             justify-content: space-around;

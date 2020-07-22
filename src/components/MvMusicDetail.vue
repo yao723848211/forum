@@ -106,12 +106,13 @@
         .mvMusicDetail {
 
             .mvMusicVideo {
+
                 video {
                     width: 100%;
                     height: 240px;
-                    /*position: fixed;*/
-                    /*top: 0;*/
-                    /*z-index: 100;*/
+                    position: fixed;
+                    top: 25px;
+                    z-index: 100;
                 }
 
                 .mvMusicDetailTitle {
@@ -120,6 +121,7 @@
                     color: #888888;
                     border-bottom: 1px solid #f7f8fa;
                     padding-bottom: 10px;
+                    margin-top: 268px;
                 }
             }
 
@@ -127,6 +129,7 @@
                 border-top: 1px solid black;
 
                 .mvMusicDetailPerson {
+                    /*margin-top: 225px;*/
                     .PersonComment {
                         padding-left: 10px;
                         padding-right: 10px;

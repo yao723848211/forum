@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="patticipation">
             <router-link :to="'/OtherLayout/msgDetail/'+item.postsId+'/'+item.title" tag="div"  class="participation-content" v-for="(item,index) in list" :key="index">
                 <div>
                     <h3>{{item.title}}</h3>
@@ -57,5 +57,8 @@
     img {
         width: 80px;
         float: right;
+    }
+    .patticipation {
+        margin-top: 40px;
     }
 </style>

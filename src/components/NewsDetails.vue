@@ -49,8 +49,10 @@
     .newsDeatil {
         padding-bottom: 60px;
         box-sizing: border-box;
+        margin-top: -34px;
         .newsDeatilContent {
             padding: 10px 20px;
+            margin-top: 80px;
 
             h3 {
                 text-align: center;

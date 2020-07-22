@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="forget">
         <van-cell-group>
             <van-field
                     v-model="username"
@@ -110,5 +110,8 @@
         width: 100%;
         margin-top: 20px;
         height: 40px;
+    }
+    .forget{
+        margin-top: 40px;
     }
 </style>
