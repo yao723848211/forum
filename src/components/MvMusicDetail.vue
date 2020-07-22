@@ -2,39 +2,43 @@
     <div class="mvMusicDetailContainer">
         <div class="mvMusicDetail">
             <div class="mvMusicVideo">
-                <video :src="obj.url" controls></video>
-                <div class="mvMusicDetailTitle">
-                   歌曲名字:{{name}}
+                <div class="video">
+                    <video :src="obj.url" controls style="width: 100%;"></video>
+                    <div class="mvMusicDetailTitle">
+                        <div>
+                            歌曲名字:{{name}}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-                <van-list
-                        v-model="loading"
-                        :finished="finished"
-                        finished-text="没有更多了"
-                        @load="onLoad"
-                >
-                    <div class="mvMusicDetailComment" >
-                        <div class="mvMusicDetailPerson">
-                            <div v-for="(item,index) in comments" :key="index">
-                                <div class="PersonComment">
-                                    <div class="person">
-                                        <div class="img">
-                                            <img :src="item.user.avatarUrl" alt="">
+                <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+                    <van-list
+                            v-model="loading"
+                            :finished="finished"
+                            finished-text="没有更多了"
+                            @load="onLoad"
+                    >
+                        <div class="mvMusicDetailComment">
+                            <div class="mvMusicDetailPerson">
+                                <div v-for="(item,index) in comments" :key="index">
+                                    <div class="PersonComment">
+                                        <div class="person">
+                                            <div class="img">
+                                                <img :src="item.user.avatarUrl" alt="">
+                                            </div>
+                                            <div class="text">
+                                                {{item.user.nickname}}
+                                            </div>
                                         </div>
-                                        <div class="text">
-                                            {{item.user.nickname}}
+                                        <div class="comment">
+                                            {{item.content}}
                                         </div>
-                                    </div>
-                                    <div class="comment">
-                                        {{item.content}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </van-list>
-            </van-pull-refresh>
+                    </van-list>
+                </van-pull-refresh>
         </div>
     </div>
 </template>
@@ -71,10 +75,10 @@
             })
             this.name = this.$route.params.name
         },
-        methods:{
+        methods: {
             //加载更多
             onLoad() {
-                getMvMusicComment(this.$route.params.id, 20,this.offset).then(res => {
+                getMvMusicComment(this.$route.params.id, 20, this.offset).then(res => {
                     // console.log(res)
                     this.comments = this.comments.concat(res.comments)
                     this.loading = false;
@@ -97,6 +101,11 @@
 </script>
 
 <style scoped lang="less">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     .mvMusicDetailContainer {
         padding-top: 8px;
         padding-bottom: 60px;
@@ -106,30 +115,31 @@
         .mvMusicDetail {
 
             .mvMusicVideo {
-
-                video {
+                .video {
                     width: 100%;
                     height: 240px;
                     position: fixed;
-                    top: 25px;
+                    top: 40px;
                     z-index: 100;
+                    background-color: #fff;
                 }
 
                 .mvMusicDetailTitle {
+                    position: fixed;
                     padding-left: 15px;
                     font-size: 14px;
                     color: #888888;
                     border-bottom: 1px solid #f7f8fa;
                     padding-bottom: 10px;
-                    margin-top: 268px;
                 }
             }
 
             .mvMusicDetailComment {
                 border-top: 1px solid black;
-
+                margin-top: 280px;
                 .mvMusicDetailPerson {
                     /*margin-top: 225px;*/
+
                     .PersonComment {
                         padding-left: 10px;
                         padding-right: 10px;

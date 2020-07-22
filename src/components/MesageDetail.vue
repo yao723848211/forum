@@ -27,7 +27,7 @@
 
 <script>
     import {publicationComment} from "../api/listApi";
-    // import { publicationComment} from "../api/listApi";
+
     import Loginminix from "../minix/Loginminix";
     import {comment} from "../api/loginApi";
     import {mapState} from "vuex";
@@ -51,6 +51,7 @@
         created() {
             console.log(this.$route.params.postsId)
 
+            // console.log(this.$route.params.postsId)
             this.$store.commit('changeid', {detailId: this.$route.params.postsId})
             this.$store.dispatch('details', {detailId: this.$route.params.postsId}).then(() => {
                 // this.obj = res.data
